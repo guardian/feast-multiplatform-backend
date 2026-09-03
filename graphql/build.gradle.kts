@@ -7,7 +7,7 @@ object GraphQLConfig {
     const val MAVEN_ARTIFACT_ID = "feast-multiplatform-graphql"
     const val SPM_FRAMEWORK_NAME = "FeastMultiplatformGraphQL"
     const val BUNDLE_ID = "com.gu.recipe.kmp.graphql"
-    const val GITHUB_REPO = "guardian/feast-multiplatform-library"
+    const val GITHUB_REPO = "guardian/feast-multiplatform-backend"
     const val PACKAGE_DESCRIPTION = "A Kotlin Multiplatform library that holds graphql impl"
 }
 
