@@ -1,3 +1,15 @@
+*.iml
+.gradle
+.idea
+.DS_Store
+build
+captures
+.externalNativeBuild
+.cxx
+local.properties
+xcuserdata
+#So we don't accidentally commit our private keys
+*.gpg
 # Compiled class file
 *.class
 
