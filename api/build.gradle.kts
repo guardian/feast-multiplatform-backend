@@ -121,10 +121,10 @@ publishing {
         publications.withType<MavenPublication>().configureEach {
             groupId = APIConfig.GROUP_ID
             version = project.version.toString()
-            artifactId = when {
-                name == "kotlinMultiplatform" -> APIConfig.MAVEN_ARTIFACT_ID
-                name.startsWith("android", ignoreCase = true) || name == "release" ->
-                    "${APIConfig.MAVEN_ARTIFACT_ID}-android"
+            // possible values of 'name' are kotlinMultiplatform, androidRelease, iosArm64, iosSimulatorArm64, iosX64
+            artifactId = when (name) {
+                "kotlinMultiplatform" -> APIConfig.MAVEN_ARTIFACT_ID
+                "androidRelease" -> "${APIConfig.MAVEN_ARTIFACT_ID}-android"
                 else -> "${APIConfig.MAVEN_ARTIFACT_ID}-${name.lowercase()}"
             }
 
