@@ -2,7 +2,7 @@
 
 ## What is it?
 
-This is a Colton Multiplatform (KMP) library that provides GraphQL network integration and data fetching repositories for Guardian Feast client applications on both **Android** and **iOS**.
+This is a Kotlin Multiplatform (KMP) library that provides GraphQL network integration and data fetching repositories for Guardian Feast client applications on both **Android** and **iOS**.
 
 It encapsulates network communication, Apollo GraphQL query execution, response parsing, and exposes clean Kotlin coroutine / Swift async interfaces and Koin dependency injection modules.
 
