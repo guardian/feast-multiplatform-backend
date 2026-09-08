@@ -9,8 +9,8 @@ object APIConfig {
     const val MAVEN_ARTIFACT_ID = "feast-multiplatform-backend"
     const val SPM_FRAMEWORK_NAME = "FeastMultiplatformBackend"
     const val BUNDLE_ID = "com.gu.recipe.kmp.backend"
-    const val GITHUB_REPO = "guardian/feast-multiplatform-library"
-    const val PACKAGE_DESCRIPTION = "A Kotlin Multiplatform library to call graphql APIs"
+    const val GITHUB_REPO = "guardian/feast-multiplatform-backend"
+    const val PACKAGE_DESCRIPTION = "Shared library for frontend Feast clients (Android, iOS and web tools) to contact the Feast API"
 }
 
 group = APIConfig.GROUP_ID
@@ -58,7 +58,7 @@ kotlin {
             binaryOption("bundleId", APIConfig.BUNDLE_ID)
             xcf.add(this)
             isStatic = false
-            export(projects.backend.graphql)
+            export(projects.graphql)
         }
     }
 
@@ -68,7 +68,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(libs.koin.core)
-                api(projects.backend.graphql)
+                api(projects.graphql)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.kotlinx.serialization.json)
             }
