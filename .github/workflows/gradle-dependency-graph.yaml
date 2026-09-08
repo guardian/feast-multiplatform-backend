@@ -22,8 +22,8 @@ jobs:
         uses: gradle/actions/dependency-submission@d156388eb19639ec20ade50009f3d199ce1e2808 # v4.1.0
       - name: Log snapshot for user validation
         id: validate
-        run: |
-          cat "$GITHUB_WORKSPACE/dependency-graph-reports/update_dependency_graph_for_gradle-dependency-graph.json"
+        run: cat
+          /home/runner/work/feast-multiplatform-backend/feast-multiplatform-backend/dependency-graph-reports/update_dependency_graph_for_gradle-dependency-graph.json
           | jq
     permissions:
       contents: write
