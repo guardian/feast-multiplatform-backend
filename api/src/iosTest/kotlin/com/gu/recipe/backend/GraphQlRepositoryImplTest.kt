@@ -11,15 +11,15 @@ import com.gu.recipe.backend.graphql.repository.RecipeGraphQlDataSource
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
-import kotlin.test.assertTrue
 
 class GraphQlRepositoryImplTest {
 
     @Test
-    fun `getCuratedCollection delegates when collection id is a valid uuid`() = runTest {
-        val expected = GraphQlResult.Failure(GraphQLError.MissingData)
-        val dataSource = FakeRecipeGraphQlDataSource(curatedResult = expected)
+    fun `getCuratedCollection returns a bare value when collection id is valid`() = runTest {
+        val expected: CuratedContainerByIdQuery.CuratedContainerById? = null
+        val dataSource = FakeRecipeGraphQlDataSource(curatedResult = GraphQlResult.Success(expected))
         val repository = GraphQlRepositoryImpl(dataSource)
         val collectionId = "123e4567-e89b-12d3-a456-426614174000"
 
@@ -30,19 +30,34 @@ class GraphQlRepositoryImplTest {
     }
 
     @Test
+    fun `getCuratedCollection throws when the data source returns a failure`() = runTest {
+        val dataSource = FakeRecipeGraphQlDataSource(
+            curatedResult = GraphQlResult.Failure(GraphQLError.MissingData)
+        )
+        val repository = GraphQlRepositoryImpl(dataSource)
+        val collectionId = "123e4567-e89b-12d3-a456-426614174000"
+
+        val error = assertFailsWith<Error> {
+            repository.getCuratedCollection(collectionId)
+        }
+
+        assertEquals(collectionId, dataSource.capturedCollectionId)
+        assertEquals("Missing data", error.message)
+    }
+
+    @Test
     fun `getCuratedCollection fails fast when collection id is invalid`() = runTest {
         val dataSource = FakeRecipeGraphQlDataSource(
             curatedResult = GraphQlResult.Failure(GraphQLError.MissingData)
         )
         val repository = GraphQlRepositoryImpl(dataSource)
 
-        val actual = repository.getCuratedCollection("not-a-uuid")
+        val error = assertFailsWith<IllegalArgumentException> {
+            repository.getCuratedCollection("not-a-uuid")
+        }
 
         assertNull(dataSource.capturedCollectionId)
-        assertTrue(actual is GraphQlResult.Failure)
-        assertTrue(actual.error is GraphQLError.Unexpected)
-        val error = actual.error as GraphQLError.Unexpected
-        assertTrue(error.cause.message?.contains("Invalid collectionId UUID") == true)
+        assertEquals("Invalid collectionId UUID: not-a-uuid", error.message)
     }
 }
 
