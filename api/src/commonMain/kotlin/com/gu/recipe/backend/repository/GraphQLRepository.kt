@@ -1,6 +1,7 @@
 package com.gu.recipe.backend.repository
 
 import com.gu.recipe.backend.graphql.GraphQlResult
+import com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery
 import com.gu.recipe.backend.graphql.generated.GetDishOfTheDayRecipeQuery
 import com.gu.recipe.backend.graphql.generated.GetFrontsByRegionQuery
 import com.gu.recipe.backend.graphql.generated.type.Editions
@@ -28,4 +29,8 @@ interface GraphQLRepository {
         region: Regions,
         edition: Editions,
     ): GraphQlResult<GetDishOfTheDayRecipeQuery.Container?>
+
+    suspend fun getCuratedCollection(
+        collectionId: String
+    ): GraphQlResult<CuratedContainerByIdQuery.CuratedContainerById?>
 }
