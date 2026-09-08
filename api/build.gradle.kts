@@ -10,7 +10,7 @@ object APIConfig {
     const val SPM_FRAMEWORK_NAME = "FeastMultiplatformBackend"
     const val BUNDLE_ID = "com.gu.recipe.kmp.backend"
     const val GITHUB_REPO = "guardian/feast-multiplatform-backend"
-    const val PACKAGE_DESCRIPTION = "A Kotlin Multiplatform Backend to call graphql APIs"
+    const val PACKAGE_DESCRIPTION = "Shared library for frontend Feast clients (Android, iOS and web tools) to contact the Feast API"
 }
 
 group = APIConfig.GROUP_ID
