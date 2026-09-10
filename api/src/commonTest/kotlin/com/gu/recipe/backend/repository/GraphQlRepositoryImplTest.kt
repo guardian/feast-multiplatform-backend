@@ -53,11 +53,12 @@ class GraphQlRepositoryImplTest {
             ),
         )
 
-        val exception = assertFailsWith<GraphQLRepositoryException> {
+        val exception = assertFailsWith<GraphQLResponseException> {
             repository.getFrontByRegion(Regions.northern, Editions.all, recipesLimit = 2)
         }
 
         assertEquals("First error\nSecond error", exception.message)
+        assertEquals(listOf("First error", "Second error"), exception.messages)
     }
 
     @Test
@@ -69,11 +70,28 @@ class GraphQlRepositoryImplTest {
             ),
         )
 
-        val exception = assertFailsWith<GraphQLRepositoryException> {
+        val exception = assertFailsWith<GraphQLTransportException> {
             repository.getFrontByRegion(Regions.northern, Editions.all, recipesLimit = 2)
         }
 
         assertEquals("GraphQL transport request failed", exception.message)
+        assertSame(cause, exception.cause)
+    }
+
+    @Test
+    fun `getFrontByRegion exposes unexpected failures`() = runTest {
+        val cause = IllegalStateException("Invalid response")
+        val repository = GraphQlRepositoryImpl(
+            FakeRecipeGraphQlDataSource(
+                frontsResult = GraphQlResult.Failure(GraphQLError.Unexpected(cause)),
+            ),
+        )
+
+        val exception = assertFailsWith<GraphQLUnexpectedException> {
+            repository.getFrontByRegion(Regions.northern, Editions.all, recipesLimit = 2)
+        }
+
+        assertEquals("Unexpected GraphQL error", exception.message)
         assertSame(cause, exception.cause)
     }
 
@@ -101,7 +119,7 @@ class GraphQlRepositoryImplTest {
             ),
         )
 
-        val exception = assertFailsWith<GraphQLRepositoryException> {
+        val exception = assertFailsWith<GraphQLMissingDataException> {
             repository.getCuratedCollection("123e4567-e89b-12d3-a456-426614174000")
         }
 
