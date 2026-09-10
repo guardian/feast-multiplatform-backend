@@ -8,6 +8,7 @@ import com.apollographql.apollo.api.Query
 import com.apollographql.apollo.exception.ApolloException
 import com.gu.recipe.backend.graphql.GraphQLError
 import com.gu.recipe.backend.graphql.GraphQlResult
+import kotlin.coroutines.cancellation.CancellationException
 
 class FeastGraphQlClient(
     private val apolloClient: ApolloClient,
@@ -17,6 +18,8 @@ class FeastGraphQlClient(
             mapResponse(apolloClient.query(query).execute())
         } catch (exception: ApolloException) {
             GraphQlResult.Failure(GraphQLError.Transport(exception))
+        } catch (exception: CancellationException) {
+            throw exception
         } catch (exception: Throwable) {
             GraphQlResult.Failure(GraphQLError.Unexpected(exception))
         }
@@ -26,6 +29,8 @@ class FeastGraphQlClient(
             mapResponse(apolloClient.mutation(mutation).execute())
         } catch (exception: ApolloException) {
             GraphQlResult.Failure(GraphQLError.Transport(exception))
+        } catch (exception: CancellationException) {
+            throw exception
         } catch (exception: Throwable) {
             GraphQlResult.Failure(GraphQLError.Unexpected(exception))
         }
