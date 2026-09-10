@@ -43,6 +43,7 @@ interface GraphQLRepository {
      * @throws GraphQLRepositoryException when the request cannot be completed.
      */
     @Throws(GraphQLRepositoryException::class, CancellationException::class)
+    @Throws(GraphQLRepositoryException::class, CancellationException::class)
     suspend fun getCuratedCollection(
         collectionId: String,
     ): CuratedContainerByIdQuery.CuratedContainerById?

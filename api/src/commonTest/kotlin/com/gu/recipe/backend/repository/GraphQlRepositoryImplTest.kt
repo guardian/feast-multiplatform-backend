@@ -58,7 +58,7 @@ class GraphQlRepositoryImplTest {
             ),
         )
 
-        val exception = assertFailsWith<GraphQLResponseException> {
+        val exception = assertFailsWith<GraphQLRepositoryException> {
             repository.getFrontByRegion(Regions.northern, Editions.all, recipesLimit = 2)
         }
 
@@ -75,7 +75,7 @@ class GraphQlRepositoryImplTest {
             ),
         )
 
-        val exception = assertFailsWith<GraphQLTransportException> {
+        val exception = assertFailsWith<GraphQLRepositoryException> {
             repository.getFrontByRegion(Regions.northern, Editions.all, recipesLimit = 2)
         }
 
@@ -124,7 +124,7 @@ class GraphQlRepositoryImplTest {
             ),
         )
 
-        val exception = assertFailsWith<GraphQLMissingDataException> {
+        val exception = assertFailsWith<GraphQLRepositoryException> {
             repository.getCuratedCollection("123e4567-e89b-12d3-a456-426614174000")
         }
 
