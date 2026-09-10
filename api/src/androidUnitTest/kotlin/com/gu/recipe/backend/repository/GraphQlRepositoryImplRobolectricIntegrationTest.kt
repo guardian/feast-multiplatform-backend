@@ -1,7 +1,6 @@
 package com.gu.recipe.backend.repository
 
-import com.gu.recipe.backend.di.feastApiModule
-import com.gu.recipe.backend.graphql.GraphQlResult
+import com.gu.recipe.backend.di.androidFeastApiModule
 import com.gu.recipe.backend.graphql.generated.type.Editions
 import com.gu.recipe.backend.graphql.generated.type.Regions
 import com.gu.recipe.backend.repository.GraphQLRepository
@@ -24,7 +23,7 @@ class GraphQlRepositoryImplRobolectricIntegrationTest {
     fun `live repository call returns fronts on the JVM`() = runTest {
         val application = koinApplication {
             modules(
-                feastApiModule(
+                androidFeastApiModule(
                     baseUrl = "https://recipes.code.dev-guardianapis.com",
                     ioDispatcher = Dispatchers.IO,
                 ),
@@ -33,18 +32,17 @@ class GraphQlRepositoryImplRobolectricIntegrationTest {
 
         try {
             val repository = application.koin.get<GraphQLRepository>()
-            val result = repository.getFrontByRegion(
+            val fronts = repository.getFrontByRegion(
                 region = Regions.northern,
                 edition = Editions.all,
                 recipesLimit = 2,
             )
             assertTrue(
-                actual = result is GraphQlResult.Success
+                actual = fronts.isNotEmpty()
             )
         } finally {
             application.close()
         }
     }
 }
-
 
