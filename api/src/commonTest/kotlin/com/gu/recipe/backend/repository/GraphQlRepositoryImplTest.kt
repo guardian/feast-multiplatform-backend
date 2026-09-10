@@ -1,5 +1,10 @@
 package com.gu.recipe.backend.repository
 
+import com.gu.recipe.backend.exceptions.GraphQLMissingDataException
+import com.gu.recipe.backend.exceptions.GraphQLRepositoryException
+import com.gu.recipe.backend.exceptions.GraphQLResponseException
+import com.gu.recipe.backend.exceptions.GraphQLTransportException
+import com.gu.recipe.backend.exceptions.GraphQLUnexpectedException
 import com.gu.recipe.backend.graphql.GraphQLError
 import com.gu.recipe.backend.graphql.GraphQlResult
 import com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery
