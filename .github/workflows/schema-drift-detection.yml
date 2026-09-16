@@ -69,6 +69,7 @@ jobs:
         with:
           branch: automation/schema-drift-update
           base: main
+          labels: maintenance
           commit-message: "chore(graphql): update schema from introspection"
           title: "chore(graphql): update schema from drift detection"
           body: |
