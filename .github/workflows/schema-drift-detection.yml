@@ -39,7 +39,7 @@ jobs:
         id: schema_changes
         if: steps.drift_check.outputs.drift_detected == 'true'
         run: |
-          if git diff --quiet -- backend/graphql/src/commonMain/graphql/schema.graphqls; then
+          if git diff --quiet -- graphql/src/commonMain/graphql/schema.graphqls; then
             echo "schema_updated=false" >> "$GITHUB_OUTPUT"
           else
             echo "schema_updated=true" >> "$GITHUB_OUTPUT"
@@ -69,6 +69,7 @@ jobs:
         with:
           branch: automation/schema-drift-update
           base: main
+          labels: maintenance
           commit-message: "chore(graphql): update schema from introspection"
           title: "chore(graphql): update schema from drift detection"
           body: |
