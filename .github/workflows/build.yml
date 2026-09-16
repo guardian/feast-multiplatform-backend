@@ -39,8 +39,8 @@ jobs:
           env:
             FEAST_GRAPHQL_INTROSPECTION_URL: ${{ vars.FEAST_GRAPHQL_INTROSPECTION_URL }}
           run: |
-            npx graphql-inspector diff ${FEAST_GRAPHQL_INTROSPECTION_URL} backend/graphql/src/commonMain/graphql/schema.graphqls --fail-on-breaking
-            
+            npx graphql-inspector diff ${FEAST_GRAPHQL_INTROSPECTION_URL} graphql/src/commonMain/graphql/schema.graphqls --fail-on-breaking
+
   build:
     strategy:
       matrix:
