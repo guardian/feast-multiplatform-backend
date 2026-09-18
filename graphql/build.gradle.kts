@@ -67,7 +67,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(libs.apollo.runtime)
+                api(libs.apollo.runtime)
                 implementation(libs.koin.core)
                 implementation(libs.kotlinx.coroutines.core)
             }
@@ -170,10 +170,9 @@ publishing {
         publications.withType<MavenPublication>().configureEach {
             groupId = GraphQLConfig.GROUP_ID
             version = project.version.toString()
-            artifactId = when {
-                name == "kotlinMultiplatform" -> GraphQLConfig.MAVEN_ARTIFACT_ID
-                name.startsWith("android", ignoreCase = true) || name == "release" ->
-                    "${GraphQLConfig.MAVEN_ARTIFACT_ID}-android"
+            artifactId = when (name) {
+                "kotlinMultiplatform" -> GraphQLConfig.MAVEN_ARTIFACT_ID
+                "androidRelease" -> "${GraphQLConfig.MAVEN_ARTIFACT_ID}-android"
                 else -> "${GraphQLConfig.MAVEN_ARTIFACT_ID}-${name.lowercase()}"
             }
 
