@@ -2,7 +2,7 @@
 
 ## What is it?
 
-This is a Colton Multiplatform (KMP) library that provides GraphQL network integration and data fetching repositories for Guardian Feast client applications on both **Android** and **iOS**.
+This is a Kotlin Multiplatform (KMP) library that provides GraphQL network integration and data fetching repositories for Guardian Feast client applications on both **Android** and **iOS**.
 
 It encapsulates network communication, Apollo GraphQL query execution, response parsing, and exposes clean Kotlin coroutine / Swift async interfaces and Koin dependency injection modules.
 
@@ -35,15 +35,15 @@ Follow the steps below to publish the `backend` library to your local maven repo
 1. Gradle sync to make sure all dependencies are downloaded
 
 #### For Android:
-1. ./gradlew :backend:graphql:publishToMavenLocal
-2. ./gradlew :backend:api:publishToMavenLocal
+1. ./gradlew graphql:publishToMavenLocal
+2. ./gradlew api:publishToMavenLocal
 3. Published artifacts can be found in `~/.m2/repository/com/gu/feast-multiplatform-api/<version>` and `~/.m2/repository/com/gu/feast-multiplatform-graphql/<version>` respectively.
 
 > Both need to be published for Android. We have defined the :api dependency in the consuming app. :graphql is pulled automatically by Gradle when building - but it still needs to be available independently on mavencentral/mavenlocal.
 
 #### For iOS:
-1. ./gradlew :backend:api:assembleFeastMultiplatformAPIXCFramework
-2. The XCFramework can be found in `backend/api/build/XCFrameworks/release/FeastMultiplatformAPI.xcframework`. You can copy this framework to your iOS project and link it manually.
+1. ./gradlew api:assembleFeastMultiplatformBackendXCFramework
+2. The XCFramework can be found in `backend/api/build/XCFrameworks/release/FeastMultiplatformBackend.xcframework`. You can copy this framework to your iOS project and link it manually.
 
 > We don't need to publish the :graphql module for iOS, as it is only used internally by the :api module and also exported in api module's XCFramework.
 

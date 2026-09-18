@@ -2,6 +2,7 @@ package com.gu.recipe.backend.graphql.repository
 
 import com.gu.recipe.backend.graphql.GraphQlResult
 import com.gu.recipe.backend.graphql.client.FeastGraphQlClient
+import com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery
 import com.gu.recipe.backend.graphql.generated.GetDishOfTheDayRecipeQuery
 import com.gu.recipe.backend.graphql.generated.GetFrontsByRegionQuery
 import com.gu.recipe.backend.graphql.generated.type.Editions
@@ -41,6 +42,21 @@ class ApolloRecipeGraphQlDataSource(
         )
         return if (result is GraphQlResult.Success) {
             GraphQlResult.Success(result.value.Container)
+        } else {
+            result as GraphQlResult.Failure
+        }
+    }
+
+    override suspend fun getCuratedCollection(
+        collectionId: String
+    ): GraphQlResult<CuratedContainerByIdQuery.CuratedContainerById?> {
+        val result = feastGraphQlClient.query(
+            CuratedContainerByIdQuery(
+                collectionId = collectionId
+            )
+        )
+        return if (result is GraphQlResult.Success) {
+            GraphQlResult.Success(result.value.curatedContainerById)
         } else {
             result as GraphQlResult.Failure
         }

@@ -1,6 +1,7 @@
 package com.gu.recipe.backend.repository
 
 import com.gu.recipe.backend.graphql.GraphQlResult
+import com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery
 import com.gu.recipe.backend.graphql.generated.GetDishOfTheDayRecipeQuery
 import com.gu.recipe.backend.graphql.generated.GetFrontsByRegionQuery
 import com.gu.recipe.backend.graphql.generated.type.Editions
@@ -22,10 +23,20 @@ interface GraphQLRepository {
         region: Regions,
         edition: Editions,
         recipesLimit: Int
-    ): GraphQlResult<List<GetFrontsByRegionQuery.Front>>
+    ): List<GetFrontsByRegionQuery.Front>
 
     suspend fun getDishOfTheDayContainer(
         region: Regions,
         edition: Editions,
-    ): GraphQlResult<GetDishOfTheDayRecipeQuery.Container?>
+    ): GetDishOfTheDayRecipeQuery.Container?
+
+    /**
+     * Fetches the specific fronts collection by ID.  It's expected that the
+     * UUID has been provided externally, e.g. deep-link
+     *
+     * @param collectionId the UUID of the collection to fetch
+     */
+    suspend fun getCuratedCollection(
+        collectionId: String
+    ): CuratedContainerByIdQuery.CuratedContainerById?
 }
