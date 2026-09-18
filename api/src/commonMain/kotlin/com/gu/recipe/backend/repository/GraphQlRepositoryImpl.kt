@@ -1,6 +1,5 @@
 package com.gu.recipe.backend.repository
 
-import com.gu.recipe.backend.exceptions.GraphQLRepositoryException
 import com.gu.recipe.backend.exceptions.cancellationExceptionOrNull
 import com.gu.recipe.backend.exceptions.toRepositoryException
 import com.gu.recipe.backend.graphql.GraphQlResult
