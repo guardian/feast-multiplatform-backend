@@ -100,6 +100,173 @@ package com.gu.recipe.backend.graphql.di {
 
 package com.gu.recipe.backend.graphql.generated {
 
+  public final class CuratedContainerByIdQuery implements com.apollographql.apollo.api.Query<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Data> {
+    ctor public CuratedContainerByIdQuery(Object collectionId);
+    method public com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Data> adapter();
+    method public Object component1();
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery copy(optional Object collectionId);
+    method public String document();
+    method @InaccessibleFromKotlin public Object getCollectionId();
+    method public String id();
+    method public String name();
+    method public com.apollographql.apollo.api.CompiledField rootField();
+    method public void serializeVariables(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, boolean withDefaultValues);
+    property public Object collectionId;
+    field public static final com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Companion Companion;
+    field public static final String OPERATION_ID = "3112cc6d48ebc7b5c06865b6b8420c961cc2eb5de096b8e7b7b32dbc1e718bd0";
+    field public static final String OPERATION_NAME = "CuratedContainerById";
+  }
+
+  public static final class CuratedContainerByIdQuery.Chef {
+    ctor public CuratedContainerByIdQuery.Chef(String? image, String id, com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Meta? meta);
+    method public String? component1();
+    method public String component2();
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Meta? component3();
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Chef copy(optional String? image, optional String id, optional com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Meta? meta);
+    method @InaccessibleFromKotlin public String getId();
+    method @InaccessibleFromKotlin public String? getImage();
+    method @InaccessibleFromKotlin public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Meta? getMeta();
+    property public String id;
+    property public String? image;
+    property public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Meta? meta;
+  }
+
+  public static final class CuratedContainerByIdQuery.Companion implements com.apollographql.apollo.api.ExecutableDefinition<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Data> {
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Data> getADAPTER();
+    method @InaccessibleFromKotlin public String getOPERATION_DOCUMENT();
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledField getROOT_FIELD();
+    property public com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Data> ADAPTER;
+    property public String OPERATION_DOCUMENT;
+    property public static String OPERATION_ID;
+    property public static String OPERATION_NAME;
+    property public com.apollographql.apollo.api.CompiledField ROOT_FIELD;
+  }
+
+  public static final class CuratedContainerByIdQuery.Contributor {
+    ctor public CuratedContainerByIdQuery.Contributor(String webTitle);
+    method public String component1();
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Contributor copy(optional String webTitle);
+    method @InaccessibleFromKotlin public String getWebTitle();
+    property public String webTitle;
+  }
+
+  public static final class CuratedContainerByIdQuery.CuratedContainerById {
+    ctor public CuratedContainerByIdQuery.CuratedContainerById(String title, String? body, java.util.List<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Item> items);
+    method public String component1();
+    method public String? component2();
+    method public java.util.List<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Item> component3();
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.CuratedContainerById copy(optional String title, optional String? body, optional java.util.List<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Item> items);
+    method @InaccessibleFromKotlin public String? getBody();
+    method @InaccessibleFromKotlin public java.util.List<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Item> getItems();
+    method @InaccessibleFromKotlin public String getTitle();
+    property public String? body;
+    property public java.util.List<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Item> items;
+    property public String title;
+  }
+
+  @com.apollographql.apollo.annotations.ApolloAdaptableWith(adapter=CuratedContainerByIdQuery_ResponseAdapter.Data::class) public static final class CuratedContainerByIdQuery.Data implements com.apollographql.apollo.api.Query.Data {
+    ctor public CuratedContainerByIdQuery.Data(com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.CuratedContainerById? curatedContainerById);
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.CuratedContainerById? component1();
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Data copy(optional com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.CuratedContainerById? curatedContainerById);
+    method @InaccessibleFromKotlin public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.CuratedContainerById? getCuratedContainerById();
+    property public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.CuratedContainerById? curatedContainerById;
+  }
+
+  public static final class CuratedContainerByIdQuery.Item {
+    ctor public CuratedContainerByIdQuery.Item(String __typename, com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.OnRecipeReference? onRecipeReference, com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.OnChef? onChef);
+    method public String component1();
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.OnRecipeReference? component2();
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.OnChef? component3();
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Item copy(optional String __typename, optional com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.OnRecipeReference? onRecipeReference, optional com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.OnChef? onChef);
+    method @InaccessibleFromKotlin public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.OnChef? getOnChef();
+    method @InaccessibleFromKotlin public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.OnRecipeReference? getOnRecipeReference();
+    method @InaccessibleFromKotlin public String get__typename();
+    property public String __typename;
+    property public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.OnChef? onChef;
+    property public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.OnRecipeReference? onRecipeReference;
+  }
+
+  public static final class CuratedContainerByIdQuery.Meta {
+    ctor public CuratedContainerByIdQuery.Meta(String? bylineImageUrl, String contributorId, String webTitle);
+    method public String? component1();
+    method public String component2();
+    method public String component3();
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Meta copy(optional String? bylineImageUrl, optional String contributorId, optional String webTitle);
+    method @InaccessibleFromKotlin public String? getBylineImageUrl();
+    method @InaccessibleFromKotlin public String getContributorId();
+    method @InaccessibleFromKotlin public String getWebTitle();
+    property public String? bylineImageUrl;
+    property public String contributorId;
+    property public String webTitle;
+  }
+
+  public static final class CuratedContainerByIdQuery.OnChef {
+    ctor public CuratedContainerByIdQuery.OnChef(com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Chef chef);
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Chef component1();
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.OnChef copy(optional com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Chef chef);
+    method @InaccessibleFromKotlin public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Chef getChef();
+    property public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Chef chef;
+  }
+
+  public static final class CuratedContainerByIdQuery.OnRecipeReference {
+    ctor public CuratedContainerByIdQuery.OnRecipeReference(com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Recipe? recipe);
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Recipe? component1();
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.OnRecipeReference copy(optional com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Recipe? recipe);
+    method @InaccessibleFromKotlin public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Recipe? getRecipe();
+    property public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Recipe? recipe;
+  }
+
+  public static final class CuratedContainerByIdQuery.PreviewImage {
+    ctor public CuratedContainerByIdQuery.PreviewImage(String url);
+    method public String component1();
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.PreviewImage copy(optional String url);
+    method @InaccessibleFromKotlin public String getUrl();
+    property public String url;
+  }
+
+  public static final class CuratedContainerByIdQuery.Recipe {
+    ctor public CuratedContainerByIdQuery.Recipe(String id, String? title, com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.RenderedTimings? renderedTimings, com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.PreviewImage? previewImage, boolean appExclusiveBranding, java.util.List<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Contributor> contributors, java.util.List<java.lang.String> cuisines, java.util.List<java.lang.String> diets, java.util.List<java.lang.String> mealTypes, String? canonicalArticle);
+    method public String component1();
+    method public String? component10();
+    method public String? component2();
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.RenderedTimings? component3();
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.PreviewImage? component4();
+    method public boolean component5();
+    method public java.util.List<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Contributor> component6();
+    method public java.util.List<java.lang.String> component7();
+    method public java.util.List<java.lang.String> component8();
+    method public java.util.List<java.lang.String> component9();
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Recipe copy(optional String id, optional String? title, optional com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.RenderedTimings? renderedTimings, optional com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.PreviewImage? previewImage, optional boolean appExclusiveBranding, optional java.util.List<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Contributor> contributors, optional java.util.List<java.lang.String> cuisines, optional java.util.List<java.lang.String> diets, optional java.util.List<java.lang.String> mealTypes, optional String? canonicalArticle);
+    method @InaccessibleFromKotlin public boolean getAppExclusiveBranding();
+    method @InaccessibleFromKotlin public String? getCanonicalArticle();
+    method @InaccessibleFromKotlin public java.util.List<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Contributor> getContributors();
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getCuisines();
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getDiets();
+    method @InaccessibleFromKotlin public String getId();
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getMealTypes();
+    method @InaccessibleFromKotlin public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.PreviewImage? getPreviewImage();
+    method @InaccessibleFromKotlin public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.RenderedTimings? getRenderedTimings();
+    method @InaccessibleFromKotlin public String? getTitle();
+    property public boolean appExclusiveBranding;
+    property public String? canonicalArticle;
+    property public java.util.List<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Contributor> contributors;
+    property public java.util.List<java.lang.String> cuisines;
+    property public java.util.List<java.lang.String> diets;
+    property public String id;
+    property public java.util.List<java.lang.String> mealTypes;
+    property public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.PreviewImage? previewImage;
+    property public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.RenderedTimings? renderedTimings;
+    property public String? title;
+  }
+
+  public static final class CuratedContainerByIdQuery.RenderedTimings {
+    ctor public CuratedContainerByIdQuery.RenderedTimings(String? forCard);
+    method public String? component1();
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.RenderedTimings copy(optional String? forCard);
+    method @InaccessibleFromKotlin public String? getForCard();
+    property public String? forCard;
+  }
+
   public final class GetDishOfTheDayRecipeQuery implements com.apollographql.apollo.api.Query<com.gu.recipe.backend.graphql.generated.GetDishOfTheDayRecipeQuery.Data> {
     ctor public GetDishOfTheDayRecipeQuery(com.gu.recipe.backend.graphql.generated.type.Regions region, com.gu.recipe.backend.graphql.generated.type.Editions edition, String alias);
     method public com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.GetDishOfTheDayRecipeQuery.Data> adapter();
@@ -491,6 +658,103 @@ package com.gu.recipe.backend.graphql.generated {
 
 package com.gu.recipe.backend.graphql.generated.adapter {
 
+  public final class CuratedContainerByIdQuery_ResponseAdapter {
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.CuratedContainerByIdQuery_ResponseAdapter INSTANCE;
+  }
+
+  public static final class CuratedContainerByIdQuery_ResponseAdapter.Chef implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Chef> {
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Chef fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Chef value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.CuratedContainerByIdQuery_ResponseAdapter.Chef INSTANCE;
+  }
+
+  public static final class CuratedContainerByIdQuery_ResponseAdapter.Contributor implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Contributor> {
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Contributor fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Contributor value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.CuratedContainerByIdQuery_ResponseAdapter.Contributor INSTANCE;
+  }
+
+  public static final class CuratedContainerByIdQuery_ResponseAdapter.CuratedContainerById implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.CuratedContainerById> {
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.CuratedContainerById fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.CuratedContainerById value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.CuratedContainerByIdQuery_ResponseAdapter.CuratedContainerById INSTANCE;
+  }
+
+  public static final class CuratedContainerByIdQuery_ResponseAdapter.Data implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Data> {
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Data fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Data value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.CuratedContainerByIdQuery_ResponseAdapter.Data INSTANCE;
+  }
+
+  public static final class CuratedContainerByIdQuery_ResponseAdapter.Item implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Item> {
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Item fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Item value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.CuratedContainerByIdQuery_ResponseAdapter.Item INSTANCE;
+  }
+
+  public static final class CuratedContainerByIdQuery_ResponseAdapter.Meta implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Meta> {
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Meta fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Meta value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.CuratedContainerByIdQuery_ResponseAdapter.Meta INSTANCE;
+  }
+
+  public static final class CuratedContainerByIdQuery_ResponseAdapter.OnChef implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.OnChef> {
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.OnChef fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.OnChef value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.CuratedContainerByIdQuery_ResponseAdapter.OnChef INSTANCE;
+  }
+
+  public static final class CuratedContainerByIdQuery_ResponseAdapter.OnRecipeReference implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.OnRecipeReference> {
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.OnRecipeReference fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.OnRecipeReference value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.CuratedContainerByIdQuery_ResponseAdapter.OnRecipeReference INSTANCE;
+  }
+
+  public static final class CuratedContainerByIdQuery_ResponseAdapter.PreviewImage implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.PreviewImage> {
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.PreviewImage fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.PreviewImage value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.CuratedContainerByIdQuery_ResponseAdapter.PreviewImage INSTANCE;
+  }
+
+  public static final class CuratedContainerByIdQuery_ResponseAdapter.Recipe implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Recipe> {
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Recipe fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.Recipe value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.CuratedContainerByIdQuery_ResponseAdapter.Recipe INSTANCE;
+  }
+
+  public static final class CuratedContainerByIdQuery_ResponseAdapter.RenderedTimings implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.RenderedTimings> {
+    method public com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.RenderedTimings fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.RenderedTimings value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.CuratedContainerByIdQuery_ResponseAdapter.RenderedTimings INSTANCE;
+  }
+
+  public final class CuratedContainerByIdQuery_VariablesAdapter {
+    method public void serializeVariables(com.apollographql.apollo.api.json.JsonWriter writer, com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery value, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, boolean withDefaultValues);
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.CuratedContainerByIdQuery_VariablesAdapter INSTANCE;
+  }
+
   public final class GetDishOfTheDayRecipeQuery_ResponseAdapter {
     field public static final com.gu.recipe.backend.graphql.generated.adapter.GetDishOfTheDayRecipeQuery_ResponseAdapter INSTANCE;
   }
@@ -721,6 +985,12 @@ package com.gu.recipe.backend.graphql.generated.adapter {
 
 package com.gu.recipe.backend.graphql.generated.selections {
 
+  public final class CuratedContainerByIdQuerySelections {
+    method @InaccessibleFromKotlin public java.util.List<com.apollographql.apollo.api.CompiledSelection> get__root();
+    property public java.util.List<com.apollographql.apollo.api.CompiledSelection> __root;
+    field public static final com.gu.recipe.backend.graphql.generated.selections.CuratedContainerByIdQuerySelections INSTANCE;
+  }
+
   public final class GetDishOfTheDayRecipeQuerySelections {
     method @InaccessibleFromKotlin public java.util.List<com.apollographql.apollo.api.CompiledSelection> get__root();
     property public java.util.List<com.apollographql.apollo.api.CompiledSelection> __root;
@@ -908,11 +1178,13 @@ package com.gu.recipe.backend.graphql.generated.type {
     method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledArgumentDefinition get__curatedContainerByAlias_alias();
     method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledArgumentDefinition get__curatedContainerByAlias_edition();
     method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledArgumentDefinition get__curatedContainerByAlias_region();
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledArgumentDefinition get__curatedContainerById_id();
     method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledArgumentDefinition get__curation_edition();
     method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledArgumentDefinition get__curation_region();
     property public com.apollographql.apollo.api.CompiledArgumentDefinition __curatedContainerByAlias_alias;
     property public com.apollographql.apollo.api.CompiledArgumentDefinition __curatedContainerByAlias_edition;
     property public com.apollographql.apollo.api.CompiledArgumentDefinition __curatedContainerByAlias_region;
+    property public com.apollographql.apollo.api.CompiledArgumentDefinition __curatedContainerById_id;
     property public com.apollographql.apollo.api.CompiledArgumentDefinition __curation_edition;
     property public com.apollographql.apollo.api.CompiledArgumentDefinition __curation_region;
     property public com.apollographql.apollo.api.ObjectType type;
@@ -966,6 +1238,19 @@ package com.gu.recipe.backend.graphql.generated.type {
     property public com.apollographql.apollo.api.EnumType type;
   }
 
+  public final class RenderedTimings {
+    ctor public RenderedTimings();
+    field public static final com.gu.recipe.backend.graphql.generated.type.RenderedTimings.Companion Companion;
+  }
+
+  public static final class RenderedTimings.Companion {
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.ObjectType getType();
+    property public com.apollographql.apollo.api.ObjectType type;
+  }
+
+  public static interface RenderedTimings.Data extends com.apollographql.apollo.api.Fragment.Data {
+  }
+
   public final class SubCollection {
     ctor public SubCollection();
     field public static final com.gu.recipe.backend.graphql.generated.type.SubCollection.Companion Companion;
@@ -1003,6 +1288,16 @@ package com.gu.recipe.backend.graphql.generated.type {
   }
 
   public static interface Timing.Data extends com.apollographql.apollo.api.Fragment.Data {
+  }
+
+  public final class Uuid {
+    ctor public Uuid();
+    field public static final com.gu.recipe.backend.graphql.generated.type.Uuid.Companion Companion;
+  }
+
+  public static final class Uuid.Companion {
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.CustomScalarType getType();
+    property public com.apollographql.apollo.api.CustomScalarType type;
   }
 
 }
@@ -1046,11 +1341,13 @@ package com.gu.recipe.backend.graphql.repository {
 
   public final class ApolloRecipeGraphQlDataSource implements com.gu.recipe.backend.graphql.repository.RecipeGraphQlDataSource {
     ctor public ApolloRecipeGraphQlDataSource(com.gu.recipe.backend.graphql.client.FeastGraphQlClient feastGraphQlClient);
+    method public suspend Object? getCuratedCollection(String collectionId, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.GraphQlResult<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.CuratedContainerById?>>);
     method public suspend Object? getDishOfTheDayContainer(com.gu.recipe.backend.graphql.generated.type.Regions region, com.gu.recipe.backend.graphql.generated.type.Editions edition, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.GraphQlResult<com.gu.recipe.backend.graphql.generated.GetDishOfTheDayRecipeQuery.Container?>>);
     method public suspend Object? getFrontByRegion(com.gu.recipe.backend.graphql.generated.type.Regions region, com.gu.recipe.backend.graphql.generated.type.Editions edition, int recipesLimit, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.GraphQlResult<? extends java.util.List<com.gu.recipe.backend.graphql.generated.GetFrontsByRegionQuery.Front>>>);
   }
 
   public interface RecipeGraphQlDataSource {
+    method public suspend Object? getCuratedCollection(String collectionId, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.GraphQlResult<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.CuratedContainerById?>>);
     method public suspend Object? getDishOfTheDayContainer(com.gu.recipe.backend.graphql.generated.type.Regions region, com.gu.recipe.backend.graphql.generated.type.Editions edition, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.GraphQlResult<com.gu.recipe.backend.graphql.generated.GetDishOfTheDayRecipeQuery.Container?>>);
     method public suspend Object? getFrontByRegion(com.gu.recipe.backend.graphql.generated.type.Regions region, com.gu.recipe.backend.graphql.generated.type.Editions edition, int recipesLimit, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.GraphQlResult<? extends java.util.List<com.gu.recipe.backend.graphql.generated.GetFrontsByRegionQuery.Front>>>);
   }
