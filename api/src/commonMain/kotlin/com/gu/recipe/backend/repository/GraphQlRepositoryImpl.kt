@@ -31,12 +31,13 @@ internal class GraphQlRepositoryImpl(
         collectionId: String,
     ): CuratedContainerByIdQuery.CuratedContainerById? {
         if (!UUID_REGEX.matches(collectionId)) {
-            throw GraphQLRepositoryException("Invalid collectionId UUID: $collectionId")
+            throw IllegalArgumentException("Invalid collectionId UUID: $collectionId")
         }
 
         return dataSource.getCuratedCollection(collectionId).getOrThrow()
     }
 }
+
 
 private fun <T> GraphQlResult<T>.getOrThrow(): T = when (this) {
     is GraphQlResult.Success -> value
@@ -46,7 +47,5 @@ private fun <T> GraphQlResult<T>.getOrThrow(): T = when (this) {
     }
 }
 
-private val UUID_REGEX = Regex(
-    "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-"
-            + "[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
-)
+private val UUID_REGEX =
+    Regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$")
