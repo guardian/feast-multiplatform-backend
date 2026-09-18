@@ -30,6 +30,12 @@ interface GraphQLRepository {
         edition: Editions,
     ): GetDishOfTheDayRecipeQuery.Container?
 
+    /**
+     * Fetches the specific fronts collection by ID.  It's expected that the
+     * UUID has been provided externally, e.g. deep-link
+     *
+     * @param collectionId the UUID of the collection to fetch
+     */
     suspend fun getCuratedCollection(
         collectionId: String
     ): CuratedContainerByIdQuery.CuratedContainerById?
