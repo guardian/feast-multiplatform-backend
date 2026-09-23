@@ -1,6 +1,10 @@
 package com.gu.recipe.backend.repository
 
+import com.gu.recipe.backend.exceptions.GraphQLMissingDataException
 import com.gu.recipe.backend.exceptions.GraphQLRepositoryException
+import com.gu.recipe.backend.exceptions.GraphQLResponseException
+import com.gu.recipe.backend.exceptions.GraphQLTransportException
+import com.gu.recipe.backend.exceptions.GraphQLUnexpectedException
 import com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery
 import com.gu.recipe.backend.graphql.generated.GetDishOfTheDayRecipeQuery
 import com.gu.recipe.backend.graphql.generated.GetFrontsByRegionQuery
@@ -21,14 +25,26 @@ interface GraphQLRepository {
      * @return the list of fronts.
      * @throws GraphQLRepositoryException when the request cannot be completed.
      */
-    @Throws(GraphQLRepositoryException::class, CancellationException::class)
+    @Throws(
+        GraphQLResponseException::class,
+        GraphQLMissingDataException::class,
+        GraphQLTransportException::class,
+        GraphQLUnexpectedException::class,
+        CancellationException::class,
+    )
     suspend fun getFrontByRegion(
         region: Regions,
         edition: Editions,
         recipesLimit: Int,
     ): List<GetFrontsByRegionQuery.Front>
 
-    @Throws(GraphQLRepositoryException::class, CancellationException::class)
+    @Throws(
+        GraphQLResponseException::class,
+        GraphQLMissingDataException::class,
+        GraphQLTransportException::class,
+        GraphQLUnexpectedException::class,
+        CancellationException::class,
+    )
     suspend fun getDishOfTheDayContainer(
         region: Regions,
         edition: Editions,
@@ -42,8 +58,13 @@ interface GraphQLRepository {
      * @return CuratedContainerById.
      * @throws GraphQLRepositoryException when the request cannot be completed.
      */
-    @Throws(GraphQLRepositoryException::class, CancellationException::class)
-    @Throws(GraphQLRepositoryException::class, CancellationException::class)
+    @Throws(
+        GraphQLResponseException::class,
+        GraphQLMissingDataException::class,
+        GraphQLTransportException::class,
+        GraphQLUnexpectedException::class,
+        CancellationException::class,
+    )
     suspend fun getCuratedCollection(
         collectionId: String,
     ): CuratedContainerByIdQuery.CuratedContainerById?
