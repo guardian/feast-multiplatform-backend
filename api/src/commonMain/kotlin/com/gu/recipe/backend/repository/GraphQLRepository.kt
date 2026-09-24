@@ -57,6 +57,7 @@ interface GraphQLRepository {
      * @param collectionId the UUID of the collection to fetch
      * @return CuratedContainerById.
      * @throws GraphQLRepositoryException when the request cannot be completed.
+     * @throws IllegalArgumentException when [collectionId] is not a UUID.
      */
     @Throws(
         GraphQLResponseException::class,
@@ -64,6 +65,7 @@ interface GraphQLRepository {
         GraphQLTransportException::class,
         GraphQLUnexpectedException::class,
         CancellationException::class,
+        IllegalArgumentException::class,
     )
     suspend fun getCuratedCollection(
         collectionId: String,
