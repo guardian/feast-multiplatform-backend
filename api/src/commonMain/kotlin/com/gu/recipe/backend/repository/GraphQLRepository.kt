@@ -1,10 +1,6 @@
 package com.gu.recipe.backend.repository
 
-import com.gu.recipe.backend.exceptions.GraphQLMissingDataException
-import com.gu.recipe.backend.exceptions.GraphQLRepositoryException
-import com.gu.recipe.backend.exceptions.GraphQLResponseException
-import com.gu.recipe.backend.exceptions.GraphQLTransportException
-import com.gu.recipe.backend.exceptions.GraphQLUnexpectedException
+import com.gu.recipe.backend.exceptions.*
 import com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery
 import com.gu.recipe.backend.graphql.generated.GetDishOfTheDayRecipeQuery
 import com.gu.recipe.backend.graphql.generated.GetFrontsByRegionQuery
@@ -38,6 +34,14 @@ interface GraphQLRepository {
         recipesLimit: Int,
     ): List<GetFrontsByRegionQuery.Front>
 
+    /**
+     * Fetches the dish of the day container for a specific region and edition.
+     *
+     * @param region the target region.
+     * @param edition the target edition.
+     * @return the dish of the day container, or null if not available.
+     * @throws GraphQLRepositoryException when the request cannot be completed.
+     */
     @Throws(
         GraphQLResponseException::class,
         GraphQLMissingDataException::class,
