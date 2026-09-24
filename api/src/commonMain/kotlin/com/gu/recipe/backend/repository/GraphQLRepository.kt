@@ -43,9 +43,10 @@ interface GraphQLRepository {
      *
      * @param region the target region.
      * @param edition the target edition.
-     * @return the dish of the day container, or null if not available.
+     * @return the dish of the day container, or null when the response contains data but no
+     * container exists for the requested region and edition.
      * @throws GraphQLResponseException when the GraphQL response is invalid.
-     * @throws GraphQLMissingDataException when required data is missing from the response.
+     * @throws GraphQLMissingDataException when the response contains no top-level data.
      * @throws GraphQLTransportException when the transport layer fails.
      * @throws GraphQLUnexpectedException when an unexpected error occurs.
      * @throws CancellationException when the coroutine is cancelled.
