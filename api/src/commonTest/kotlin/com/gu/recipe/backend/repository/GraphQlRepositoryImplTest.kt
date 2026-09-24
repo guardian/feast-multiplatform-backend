@@ -1,7 +1,6 @@
 package com.gu.recipe.backend.repository
 
 import com.gu.recipe.backend.exceptions.GraphQLMissingDataException
-import com.gu.recipe.backend.exceptions.GraphQLRepositoryException
 import com.gu.recipe.backend.exceptions.GraphQLResponseException
 import com.gu.recipe.backend.exceptions.GraphQLTransportException
 import com.gu.recipe.backend.exceptions.GraphQLUnexpectedException
@@ -136,7 +135,7 @@ class GraphQlRepositoryImplTest {
         val dataSource = FakeRecipeGraphQlDataSource()
         val repository = GraphQlRepositoryImpl(dataSource)
 
-        val exception = assertFailsWith<GraphQLRepositoryException> {
+        val exception = assertFailsWith<IllegalArgumentException> {
             repository.getCuratedCollection("not-a-uuid")
         }
 
