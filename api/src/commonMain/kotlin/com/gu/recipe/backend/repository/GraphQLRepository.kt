@@ -19,7 +19,11 @@ interface GraphQLRepository {
      * @param edition the target edition.
      * @param recipesLimit the maximum number of recipes to return.
      * @return the list of fronts.
-     * @throws GraphQLRepositoryException when the request cannot be completed.
+     * @throws GraphQLResponseException when the GraphQL response is invalid.
+     * @throws GraphQLMissingDataException when required data is missing from the response.
+     * @throws GraphQLTransportException when the transport layer fails.
+     * @throws GraphQLUnexpectedException when an unexpected error occurs.
+     * @throws CancellationException when the coroutine is cancelled.
      */
     @Throws(
         GraphQLResponseException::class,
@@ -40,7 +44,11 @@ interface GraphQLRepository {
      * @param region the target region.
      * @param edition the target edition.
      * @return the dish of the day container, or null if not available.
-     * @throws GraphQLRepositoryException when the request cannot be completed.
+     * @throws GraphQLResponseException when the GraphQL response is invalid.
+     * @throws GraphQLMissingDataException when required data is missing from the response.
+     * @throws GraphQLTransportException when the transport layer fails.
+     * @throws GraphQLUnexpectedException when an unexpected error occurs.
+     * @throws CancellationException when the coroutine is cancelled.
      */
     @Throws(
         GraphQLResponseException::class,
@@ -60,7 +68,11 @@ interface GraphQLRepository {
      *
      * @param collectionId the UUID of the collection to fetch
      * @return CuratedContainerById.
-     * @throws GraphQLRepositoryException when the request cannot be completed.
+     * @throws GraphQLResponseException when the GraphQL response is invalid.
+     * @throws GraphQLMissingDataException when required data is missing from the response.
+     * @throws GraphQLTransportException when the transport layer fails.
+     * @throws GraphQLUnexpectedException when an unexpected error occurs.
+     * @throws CancellationException when the coroutine is cancelled.
      * @throws IllegalArgumentException when [collectionId] is not a UUID.
      */
     @Throws(
