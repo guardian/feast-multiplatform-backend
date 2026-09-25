@@ -104,15 +104,14 @@ class GraphQlRepositoryImplTest {
         val cancellationException = CancellationException("Request cancelled")
         val repository = GraphQlRepositoryImpl(
             FakeRecipeGraphQlDataSource(
-                frontsResult = GraphQlResult.Failure(
-                    GraphQLError.Unexpected(cancellationException),
-                ),
+                frontsException = cancellationException,
             ),
         )
 
-        assertFailsWith<CancellationException> {
+        val exception = assertFailsWith<CancellationException> {
             repository.getFrontByRegion(Regions.northern, Editions.all, recipesLimit = 2)
         }
+        assertSame(cancellationException, exception)
     }
 
     @Test
@@ -147,6 +146,7 @@ class GraphQlRepositoryImplTest {
 private class FakeRecipeGraphQlDataSource(
     private val frontsResult: GraphQlResult<List<GetFrontsByRegionQuery.Front>> =
         GraphQlResult.Success(emptyList()),
+    private val frontsException: CancellationException? = null,
     private val dishOfTheDayResult: GraphQlResult<GetDishOfTheDayRecipeQuery.Container?> =
         GraphQlResult.Success(null),
     private val curatedResult: GraphQlResult<CuratedContainerByIdQuery.CuratedContainerById?> =
@@ -159,7 +159,10 @@ private class FakeRecipeGraphQlDataSource(
         region: Regions,
         edition: Editions,
         recipesLimit: Int,
-    ): GraphQlResult<List<GetFrontsByRegionQuery.Front>> = frontsResult
+    ): GraphQlResult<List<GetFrontsByRegionQuery.Front>> {
+        frontsException?.let { throw it }
+        return frontsResult
+    }
 
     override suspend fun getDishOfTheDayContainer(
         region: Regions,
