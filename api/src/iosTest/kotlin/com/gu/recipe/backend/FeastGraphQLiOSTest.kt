@@ -1,6 +1,5 @@
 package com.gu.recipe.backend
 
-import com.gu.recipe.backend.FeastGraphQLiOS
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertNotNull
