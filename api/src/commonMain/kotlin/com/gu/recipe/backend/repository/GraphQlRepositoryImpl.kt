@@ -1,6 +1,5 @@
 package com.gu.recipe.backend.repository
 
-import com.gu.recipe.backend.exceptions.cancellationExceptionOrNull
 import com.gu.recipe.backend.exceptions.toRepositoryException
 import com.gu.recipe.backend.graphql.GraphQlResult
 import com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery
@@ -41,7 +40,6 @@ internal class GraphQlRepositoryImpl(
 private fun <T> GraphQlResult<T>.getOrThrow(): T = when (this) {
     is GraphQlResult.Success -> value
     is GraphQlResult.Failure -> {
-        error.cancellationExceptionOrNull()?.let { throw it }
         throw error.toRepositoryException()
     }
 }

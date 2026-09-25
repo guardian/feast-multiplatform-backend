@@ -22,12 +22,6 @@ internal fun GraphQLError.toRepositoryException(): GraphQLRepositoryException = 
     is GraphQLError.Unexpected -> GraphQLUnexpectedException(cause)
 }
 
-internal fun GraphQLError.cancellationExceptionOrNull(): CancellationException? = when (this) {
-    is GraphQLError.Transport -> cause as? CancellationException
-    is GraphQLError.Unexpected -> cause as? CancellationException
-    else -> null
-}
-
 @Retention(AnnotationRetention.RUNTIME)
 @MustBeDocumented
 @Target(AnnotationTarget.CLASS)
