@@ -26,12 +26,41 @@ package com.gu.recipe.backend.di {
 
 }
 
+package com.gu.recipe.backend.exceptions {
+
+  public final class GraphQLMissingDataException extends com.gu.recipe.backend.exceptions.GraphQLRepositoryException {
+    ctor public GraphQLMissingDataException();
+  }
+
+  @com.gu.recipe.backend.exceptions.RepositoryException public class GraphQLRepositoryException extends java.lang.Exception {
+    ctor public GraphQLRepositoryException(String message, optional Throwable? cause);
+  }
+
+  public final class GraphQLResponseException extends com.gu.recipe.backend.exceptions.GraphQLRepositoryException {
+    ctor public GraphQLResponseException(java.util.List<java.lang.String> messages);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getMessages();
+    property public java.util.List<java.lang.String> messages;
+  }
+
+  public final class GraphQLTransportException extends com.gu.recipe.backend.exceptions.GraphQLRepositoryException {
+    ctor public GraphQLTransportException(Throwable cause);
+  }
+
+  public final class GraphQLUnexpectedException extends com.gu.recipe.backend.exceptions.GraphQLRepositoryException {
+    ctor public GraphQLUnexpectedException(Throwable cause);
+  }
+
+  @kotlin.annotation.MustBeDocumented @kotlin.annotation.Retention(kotlin.annotation.AnnotationRetention.RUNTIME) @kotlin.annotation.Target(allowedTargets=kotlin.annotation.AnnotationTarget.CLASS) public @interface RepositoryException {
+  }
+
+}
+
 package com.gu.recipe.backend.repository {
 
   public interface GraphQLRepository {
-    method public suspend Object? getCuratedCollection(String collectionId, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.GraphQlResult<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.CuratedContainerById?>>);
-    method public suspend Object? getDishOfTheDayContainer(com.gu.recipe.backend.graphql.generated.type.Regions region, com.gu.recipe.backend.graphql.generated.type.Editions edition, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.GraphQlResult<com.gu.recipe.backend.graphql.generated.GetDishOfTheDayRecipeQuery.Container?>>);
-    method public suspend Object? getFrontByRegion(com.gu.recipe.backend.graphql.generated.type.Regions region, com.gu.recipe.backend.graphql.generated.type.Editions edition, int recipesLimit, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.GraphQlResult<? extends java.util.List<com.gu.recipe.backend.graphql.generated.GetFrontsByRegionQuery.Front>>>);
+    method @kotlin.jvm.Throws(exceptionClasses={GraphQLResponseException::class, GraphQLMissingDataException::class, GraphQLTransportException::class, GraphQLUnexpectedException::class, CancellationException::class, IllegalArgumentException::class}) public suspend Object? getCuratedCollection(String collectionId, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.CuratedContainerById?>) throws java.util.concurrent.CancellationException, com.gu.recipe.backend.exceptions.GraphQLMissingDataException, com.gu.recipe.backend.exceptions.GraphQLResponseException, com.gu.recipe.backend.exceptions.GraphQLTransportException, com.gu.recipe.backend.exceptions.GraphQLUnexpectedException, java.lang.IllegalArgumentException;
+    method @kotlin.jvm.Throws(exceptionClasses={GraphQLResponseException::class, GraphQLMissingDataException::class, GraphQLTransportException::class, GraphQLUnexpectedException::class, CancellationException::class}) public suspend Object? getDishOfTheDayContainer(com.gu.recipe.backend.graphql.generated.type.Regions region, com.gu.recipe.backend.graphql.generated.type.Editions edition, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.generated.GetDishOfTheDayRecipeQuery.Container?>) throws java.util.concurrent.CancellationException, com.gu.recipe.backend.exceptions.GraphQLMissingDataException, com.gu.recipe.backend.exceptions.GraphQLResponseException, com.gu.recipe.backend.exceptions.GraphQLTransportException, com.gu.recipe.backend.exceptions.GraphQLUnexpectedException;
+    method @kotlin.jvm.Throws(exceptionClasses={GraphQLResponseException::class, GraphQLMissingDataException::class, GraphQLTransportException::class, GraphQLUnexpectedException::class, CancellationException::class}) public suspend Object? getFrontByRegion(com.gu.recipe.backend.graphql.generated.type.Regions region, com.gu.recipe.backend.graphql.generated.type.Editions edition, int recipesLimit, kotlin.coroutines.Continuation<? super java.util.List<com.gu.recipe.backend.graphql.generated.GetFrontsByRegionQuery.Front>>) throws java.util.concurrent.CancellationException, com.gu.recipe.backend.exceptions.GraphQLMissingDataException, com.gu.recipe.backend.exceptions.GraphQLResponseException, com.gu.recipe.backend.exceptions.GraphQLTransportException, com.gu.recipe.backend.exceptions.GraphQLUnexpectedException;
   }
 
 }
