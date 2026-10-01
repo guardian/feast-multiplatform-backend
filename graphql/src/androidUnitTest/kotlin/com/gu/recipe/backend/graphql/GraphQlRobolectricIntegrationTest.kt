@@ -6,6 +6,7 @@ import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Query
 import com.apollographql.cache.normalized.FetchPolicy
 import com.apollographql.cache.normalized.fetchPolicy
+import com.gu.recipe.backend.graphql.auth.AuthTokenProvider
 import com.gu.recipe.backend.graphql.client.ApolloClientFactory
 import com.gu.recipe.backend.graphql.client.FeastGraphQlClient
 import com.gu.recipe.backend.graphql.config.GraphQlConfig
@@ -131,7 +132,7 @@ class GraphQlRobolectricIntegrationTest {
             baseUrl = "https://recipes.guardianapis.com",
         )
 
-        return ApolloClientFactory(Dispatchers.IO).create(
+        return ApolloClientFactory(Dispatchers.IO, AuthTokenProvider()).create(
             config = config,
         )
     }
@@ -143,5 +144,4 @@ class GraphQlRobolectricIntegrationTest {
             recipesLimit2 = 2,
         )
 }
-
 
