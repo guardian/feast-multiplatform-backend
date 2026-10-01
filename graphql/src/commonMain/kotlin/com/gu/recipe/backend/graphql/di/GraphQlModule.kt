@@ -1,6 +1,7 @@
 package com.gu.recipe.backend.graphql.di
 
 import com.apollographql.apollo.ApolloClient
+import com.gu.recipe.backend.graphql.auth.AuthTokenProvider
 import com.gu.recipe.backend.graphql.client.ApolloClientFactory
 import com.gu.recipe.backend.graphql.client.FeastGraphQlClient
 import com.gu.recipe.backend.graphql.config.GraphQlConfig
@@ -23,8 +24,9 @@ fun graphQlModule(
 ): Module = module {
     single { config }
     single<GraphQlServerUrlProvider> { get<GraphQlConfig>().serverUrlProvider }
+    single { AuthTokenProvider() }
     single<CoroutineDispatcher>(named(GraphQlQualifiers.IoDispatcher)) { ioDispatcher }
-    single { ApolloClientFactory(get(named(GraphQlQualifiers.IoDispatcher))) }
+    single { ApolloClientFactory(get(named(GraphQlQualifiers.IoDispatcher)), get()) }
     single<ApolloClient> {
         get<ApolloClientFactory>().create(
             config = get(),
@@ -33,4 +35,3 @@ fun graphQlModule(
     single { FeastGraphQlClient(get()) }
     single<RecipeGraphQlDataSource> { ApolloRecipeGraphQlDataSource(get()) }
 }
-
