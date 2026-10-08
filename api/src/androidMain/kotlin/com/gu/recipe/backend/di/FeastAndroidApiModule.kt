@@ -1,5 +1,6 @@
 package com.gu.recipe.backend.di
 
+import com.gu.recipe.backend.FeastApiClient
 import com.gu.recipe.backend.graphql.config.GraphQlConfig
 import com.gu.recipe.backend.graphql.di.graphQlModule
 import com.gu.recipe.backend.repository.GraphQLRepository
@@ -23,10 +24,10 @@ fun androidFeastApiModule(
     includes(
         graphQlModule(
             GraphQlConfig(
-                baseUrl = baseUrl
+                baseUrl = baseUrl,
             ), ioDispatcher
         )
     )
+    single { FeastApiClient(get()) }
     single<GraphQLRepository> { GraphQlRepositoryImpl(get()) }
 }
-

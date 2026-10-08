@@ -1,6 +1,7 @@
 package com.gu.recipe.backend.graphql
 
 import com.apollographql.apollo.ApolloClient
+import com.gu.recipe.backend.graphql.auth.AuthTokenProvider
 import com.gu.recipe.backend.graphql.client.FeastGraphQlClient
 import com.gu.recipe.backend.graphql.config.GraphQlConfig
 import com.gu.recipe.backend.graphql.di.GraphQlQualifiers
@@ -44,6 +45,15 @@ class GraphQlConfigTest {
     }
 
     @Test
+    fun `auth token provider returns token updates`() {
+        val authTokenProvider = AuthTokenProvider("first-token")
+
+        authTokenProvider.updateAuthToken("second-token")
+
+        assertEquals("second-token", authTokenProvider.authToken)
+    }
+
+    @Test
     fun `koin module exposes graphql dependencies`() {
         val config = GraphQlConfig(
             baseUrl = "https://recipes.guardianapis.com",
@@ -56,6 +66,7 @@ class GraphQlConfigTest {
             val koin = application.koin
             assertNotNull(koin.get<GraphQlConfig>())
             assertNotNull(koin.get<GraphQlServerUrlProvider>())
+            assertNotNull(koin.get<AuthTokenProvider>())
             assertNotNull(koin.get<CoroutineDispatcher>(named(GraphQlQualifiers.IoDispatcher)))
             assertNotNull(koin.get<ApolloClient>())
             assertNotNull(koin.get<FeastGraphQlClient>())
@@ -65,4 +76,3 @@ class GraphQlConfigTest {
         }
     }
 }
-

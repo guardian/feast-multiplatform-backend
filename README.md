@@ -60,3 +60,15 @@ Consumers only need to depend on `backend:api`. Transitive dependencies (includi
 dependencies {
 implementation("com.gu:feast-multiplatform-api:<latest-version>") // e.g. 1.0.0-alpha01
 }
+
+
+### Authorization headers
+
+The API module automatically installs a GraphQL HTTP interceptor. Update the token through the
+resolved `FeastApiClient`; its value is sent as the `Authorization` header on every subsequent
+GraphQL request.
+
+```kotlin
+val apiClient: FeastApiClient = koin.get()
+apiClient.updateAuthToken("Bearer <token>")
+```
