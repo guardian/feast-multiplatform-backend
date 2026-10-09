@@ -54,6 +54,7 @@ Follow the steps below to publish the `backend` library to your local maven repo
 ## Browser TypeScript / Node.js
 
 Both `api` and `graphql` have Kotlin/JS targets with Node.js and browser support.
+Building the typed package requires Node.js 22 or newer and npm on `PATH`.
 Build the combined library from the repository root:
 
 ```sh
@@ -63,7 +64,13 @@ Build the combined library from the repository root:
 The npm-compatible archive is written to `api/build/distributions/feast-multiplatform-backend-api-<version>.tgz`,
 using the version from `version.txt`. It contains the API, GraphQL implementation, and Kotlin runtime modules;
 there is no separate GraphQL package to install. The unpacked ES modules and `.d.mts` declarations
-are available in `api/build/dist/js/productionLibrary`.
+are available in `api/build/dist/js/typescriptLibrary`.
+
+The build generates TypeScript schema and operation models from the same
+`graphql/src/commonMain/graphql/schema.graphqls` and `.graphql` files used by Apollo Kotlin.
+There are no separately maintained response models or additional network clients.
+Code-generation dependencies are pinned in `api/typescript/package-lock.json` and installed with `npm ci`.
+Changes to the schema or operations trigger regeneration during the Gradle package build.
 
 Install the archive in the consuming TypeScript project:
 
@@ -72,12 +79,20 @@ npm install /absolute/path/to/feast-multiplatform-backend-api-<version>.tgz
 ```
 
 ```typescript
-import { FeastGraphQL } from "feast-multiplatform-backend-api";
+import { FeastGraphQL, type Regions } from "feast-multiplatform-backend-api";
 
 const api = new FeastGraphQL("https://your-feast-api.example");
+const region: Regions = "northern";
 try {
-	const fronts = JSON.parse(await api.getFrontByRegion("northern", "all", 10));
+	const fronts = await api.getFrontByRegion(region, "all", 10);
 	console.log(fronts);
+	for (const front of fronts) {
+		for (const item of front.items) {
+			if (item.__typename === "RecipeReference") {
+				console.log(item.recipe?.title);
+			}
+		}
+	}
 } finally {
 	api.close();
 }
@@ -88,24 +103,27 @@ requests use `fetch`, so the server must permit the consuming application's orig
 Use a modern browser bundler and TypeScript's `moduleResolution: "bundler"` (or `"nodenext"`
 for Node.js) to resolve the ES modules and declarations.
 
-The exported `FeastGraphQL` methods return native `Promise<string>` values containing JSON:
+The exported `FeastGraphQL` methods return native Promises of typed JavaScript objects:
 
-- `getFrontByRegion(region, edition, recipesLimit)` returns an array of fronts.
-- `getDishOfTheDayContainer(region, edition)` returns a container or JSON `null`.
-- `getCuratedCollection(collectionId)` returns a collection or JSON `null` and validates the UUID.
+- `getFrontByRegion(region, edition, recipesLimit)` returns `GetFrontsByRegionQuery["Front"]`.
+- `getDishOfTheDayContainer(region, edition)` returns `GetDishOfTheDayRecipeQuery["Container"]`, including `null`.
+- `getCuratedCollection(collectionId)` returns `CuratedContainerByIdQuery["curatedContainerById"]`, including `null`, and validates the UUID.
 - `close()` cancels pending requests and releases the client. Create a new instance to make further requests.
 
-Regions are `northern`, `southern`, and `us`; editions are `all` and `meatfree`.
+Generated `Regions` and `Editions` types restrict inputs to the schema's enum values:
+regions are `northern`, `southern`, and `us`; editions are `all` and `meatfree`.
 Invalid arguments, transport failures, and GraphQL errors reject the Promise.
-JSON uses GraphQL field names, including `__typename` for union members, rather than Kotlin's
-synthetic `onRecipeReference`-style properties. Method signatures are typed; parsed response
-objects are not given generated TypeScript model types. Consumers should type or validate those
-objects against the GraphQL schema as needed.
+Results use GraphQL field names, including `__typename` for narrowing union members, rather than Kotlin's
+synthetic `onRecipeReference`-style properties. All generated schema and operation types are exported
+from the npm package; prefer operation types for responses, because they describe the fields actually
+selected by each query. Date/time and UUID scalars are strings; `RawJson` is `unknown`.
+TypeScript types do not add runtime validation. Response parsing remains in Apollo Kotlin, and
+the wrapper converts its serialized models to JavaScript objects internally.
 
-Run both modules' shared tests and the JavaScript adapter tests on Node.js:
+Run generated TypeScript contract tests, wrapper runtime tests, and both modules' Kotlin/JS tests:
 
 ```sh
-./gradlew :api:jsNodeTest :graphql:jsNodeTest
+./gradlew :api:testJavaScriptLibrary :api:jsNodeTest :graphql:jsNodeTest
 ```
 
 ## Android Setup
