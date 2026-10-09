@@ -33,6 +33,14 @@ skie {
 }
 
 kotlin {
+    js {
+        nodejs()
+        browser()
+        binaries.library()
+        generateTypeScriptDefinitions()
+        useEsModules()
+    }
+
     androidTarget {
         publishLibraryVariants("release")
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
@@ -114,6 +122,20 @@ android {
             withJavadocJar()
         }
     }
+}
+
+tasks.register<Tar>("packJavaScriptLibrary") {
+    group = "distribution"
+    description = "Packages the API and GraphQL JavaScript library for npm installation."
+    dependsOn("jsNodeProductionLibraryDistribution")
+    from(layout.buildDirectory.dir("dist/js/productionLibrary")) {
+        into("package")
+    }
+    archiveBaseName.set("feast-multiplatform-backend-api")
+    archiveVersion.set(project.version.toString())
+    archiveExtension.set("tgz")
+    compression = Compression.GZIP
+    destinationDirectory.set(layout.buildDirectory.dir("distributions"))
 }
 
 publishing {
