@@ -3,6 +3,7 @@ query CuratedContainerById($collectionId: uuid!) {
         title
         body
         items {
+            __typename
             ... on RecipeReference {
                 recipe {
                     id

@@ -6,6 +6,7 @@ query GetDishOfTheDayRecipe(
     Container: curatedContainerByAlias(region: $region, edition: $edition, alias: $alias) {
         title
         items {
+            __typename
             ... on RecipeReference {
                 recipe {
                     title

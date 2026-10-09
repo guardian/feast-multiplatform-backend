@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "declaration": true,
+    "rootDir": "../build/typescript/src",
+    "outDir": "../build/dist/js/typescriptLibrary"
+  },
+  "include": ["../build/typescript/src/*.ts"]
+}

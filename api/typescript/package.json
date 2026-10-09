@@ -1,0 +1,17 @@
+{
+  "name": "feast-backend-typescript-build",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "graphql-codegen --config codegen.mjs",
+    "build": "node build.mjs prepare && npm run generate && tsc --project tsconfig.json && node build.mjs package",
+    "test": "tsc --noEmit --strict --target ES2022 --module NodeNext --moduleResolution NodeNext test/types.test.ts && node --test test/*.test.mjs"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "7.4.5",
+    "@graphql-codegen/typescript": "6.1.1",
+    "@graphql-codegen/typescript-operations": "6.1.10",
+    "graphql": "16.11.0",
+    "typescript": "5.9.3"
+  }
+}

@@ -124,11 +124,47 @@ android {
     }
 }
 
+val installTypeScriptBuildDependencies = tasks.register<Exec>("installTypeScriptBuildDependencies") {
+    group = "build"
+    description = "Installs the locked TypeScript model-generation tools."
+    workingDir(layout.projectDirectory.dir("typescript"))
+    commandLine("npm", "ci", "--ignore-scripts", "--no-audit", "--no-fund")
+    inputs.files("typescript/package.json", "typescript/package-lock.json")
+    outputs.dir("typescript/node_modules")
+}
+
+val buildTypeScriptLibrary = tasks.register<Exec>("buildTypeScriptLibrary") {
+    group = "build"
+    description = "Generates GraphQL TypeScript models and builds the typed JavaScript library."
+    dependsOn(installTypeScriptBuildDependencies, "jsNodeProductionLibraryDistribution")
+    workingDir(layout.projectDirectory.dir("typescript"))
+    commandLine("npm", "run", "build")
+    inputs.files(fileTree("typescript") {
+        include("src/**", "codegen.mjs", "build.mjs", "tsconfig.json", "package*.json")
+    })
+    inputs.dir(layout.projectDirectory.dir("../graphql/src/commonMain/graphql"))
+    inputs.dir(layout.buildDirectory.dir("dist/js/productionLibrary"))
+    outputs.dir(layout.buildDirectory.dir("typescript"))
+    outputs.dir(layout.buildDirectory.dir("dist/js/typescriptLibrary"))
+}
+
+tasks.register<Exec>("testJavaScriptLibrary") {
+    group = "verification"
+    description = "Tests generated TypeScript contracts and the packaged JavaScript API."
+    dependsOn(buildTypeScriptLibrary)
+    workingDir(layout.projectDirectory.dir("typescript"))
+    commandLine("npm", "test")
+}
+
+tasks.named("check") {
+    dependsOn("testJavaScriptLibrary")
+}
+
 tasks.register<Tar>("packJavaScriptLibrary") {
     group = "distribution"
     description = "Packages the API and GraphQL JavaScript library for npm installation."
-    dependsOn("jsNodeProductionLibraryDistribution")
-    from(layout.buildDirectory.dir("dist/js/productionLibrary")) {
+    dependsOn(buildTypeScriptLibrary)
+    from(layout.buildDirectory.dir("dist/js/typescriptLibrary")) {
         into("package")
     }
     archiveBaseName.set("feast-multiplatform-backend-api")
