@@ -38,11 +38,14 @@ internal class GraphQlRepositoryImpl(
         return dataSource.getCuratedCollection(collectionId).getOrThrow()
     }
     
-    //suspend fun faciaRecipeSearch(query: String, celebrationId: String?, dietId: String?, uprateByDate: SortableDates?): GraphQlResult<FaciaRecipeSearchQuery.FaciaRecipeSearch?>
-
-    override suspend fun faciaRecipeSearch(query: String, celebrationId: String?, dietId: String?, uprateByDate: String?): FaciaRecipeSearchQuery.FaciaRecipeSearch? {
-        val actualDate = SortableDates.
-        dataSource.faciaRecipeSearch().getOrThrow()
+    override suspend fun faciaRecipeSearch(
+        query: String,
+        celebrationId: String?,
+        dietId: String?,
+        uprateByDate: String?,
+    ): FaciaRecipeSearchQuery.Search? {
+        val actualDateField = uprateByDate?.let { SortableDates.valueOf(it) }
+        return dataSource.faciaRecipeSearch(query, celebrationId, dietId, actualDateField).getOrThrow()
     }
 }
 

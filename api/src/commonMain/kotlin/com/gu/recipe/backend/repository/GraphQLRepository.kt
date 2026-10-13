@@ -4,6 +4,7 @@ import com.gu.recipe.backend.exceptions.*
 import com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery
 import com.gu.recipe.backend.graphql.generated.GetDishOfTheDayRecipeQuery
 import com.gu.recipe.backend.graphql.generated.GetFrontsByRegionQuery
+import com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery
 import com.gu.recipe.backend.graphql.generated.type.Editions
 import com.gu.recipe.backend.graphql.generated.type.Regions
 import kotlin.coroutines.cancellation.CancellationException
@@ -88,6 +89,20 @@ interface GraphQLRepository {
         collectionId: String,
     ): CuratedContainerByIdQuery.CuratedContainerById?
 
+    /**
+     * Performs a recipe search in a format suitable for the Fronts tool UI
+     * @param query - the string to search for. Empty string returns the most recent recipes
+     * @param celebrationId - optional celebration ID to filter for
+     * @param dietId - optional diet ID to filter for
+     * @param uprateByDate - if prioritising recent recipes, the field to use.  firstPublishedDate, publishedDate or lastModifiedDate.
+     * @throws GraphQLResponseException when the GraphQL response is invalid.
+     * @throws GraphQLMissingDataException when required data is missing from the response.
+     * @throws GraphQLTransportException when the transport layer fails.
+     * @throws GraphQLUnexpectedException when an unexpected error occurs.
+     * @throws CancellationException when the coroutine is cancelled.
+     * @throws IllegalArgumentException when [uprateByDate] is not a known value.
+     * 
+     */
     @Throws(
         GraphQLResponseException::class,
         GraphQLMissingDataException::class,
@@ -96,5 +111,10 @@ interface GraphQLRepository {
         CancellationException::class,
         IllegalArgumentException::class,
     )
-    suspend fun faciaRecipeSearch(): FaciaRecipeSearchQuery.FaciaRecipeSearch?
+    suspend fun faciaRecipeSearch(
+        query: String, 
+        celebrationId: String?,
+        dietId: String?,
+        uprateByDate: String?
+    ): FaciaRecipeSearchQuery.Search?
 }

@@ -5,6 +5,9 @@ import com.gu.recipe.backend.graphql.client.FeastGraphQlClient
 import com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery
 import com.gu.recipe.backend.graphql.generated.GetDishOfTheDayRecipeQuery
 import com.gu.recipe.backend.graphql.generated.GetFrontsByRegionQuery
+import com.gu.recipe.backend.graphql.generated.type.SortableDates
+import com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery
+import com.apollographql.apollo.api.Optional
 import com.gu.recipe.backend.graphql.generated.type.Editions
 import com.gu.recipe.backend.graphql.generated.type.Regions
 
@@ -62,17 +65,26 @@ class ApolloRecipeGraphQlDataSource(
         }
     }
     
-    suspend fun faciaRecipeSearch(query: String, celebrationId: String?, dietId: String?, uprateByDate: SortableDates?): GraphQlResult<FaciaRecipeSearchQuery.FaciaRecipeSearch?> {
+    override suspend fun faciaRecipeSearch(
+        query: String,
+        celebrationId: String?,
+        dietId: String?,
+        uprateByDate: SortableDates?,
+    ): GraphQlResult<FaciaRecipeSearchQuery.Search?> {
+        val celebrationArg: Optional<List<String>?> =
+            Optional.presentIfNotNull(celebrationId?.let(::listOf))
+        val dietArg: Optional<List<String>?> =
+            Optional.presentIfNotNull(dietId?.let(::listOf))
         val result = feastGraphQlClient.query(
             FaciaRecipeSearchQuery(
                 query = query,
-                celebrationId = celebrationId,
-                dietId = dietId,
-                uprateByDate = uprateByDate,
+                celebrationId = celebrationArg,
+                dietId = dietArg,
+                uprateByDate = Optional.presentIfNotNull(uprateByDate),
             )
         )
         return if (result is GraphQlResult.Success) {
-            GraphQlResult.Success(result.value.curatedContainerById)
+            GraphQlResult.Success(result.value.search)
         } else {
             result as GraphQlResult.Failure
         }
