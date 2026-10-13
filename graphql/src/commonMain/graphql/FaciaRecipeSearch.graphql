@@ -1,0 +1,33 @@
+query FaciaRecipeSearch(
+    $query: String!
+    $celebrationId: [String!]
+    $dietId: [String!]
+    $uprateByDate: SortableDates
+) {
+    search(
+        q: $query
+        celebrationFilter: $celebrationId
+        dietFilter: $dietId
+        uprateByDate: $uprateByDate
+    ) {
+        maxScore
+        results {
+            ... on SearchHit {
+                score
+                recipe {
+                    appExclusiveBranding
+                    title
+                    lastModifiedDate
+                    publishedDate
+                    firstPublishedDate
+                    featuredImage {
+                        templateUrl
+                    }
+                    contributors {
+                        webTitle
+                    }
+                }
+            }
+        }
+    }
+}

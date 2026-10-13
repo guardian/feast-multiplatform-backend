@@ -61,6 +61,22 @@ class ApolloRecipeGraphQlDataSource(
             result as GraphQlResult.Failure
         }
     }
+    
+    suspend fun faciaRecipeSearch(query: String, celebrationId: String?, dietId: String?, uprateByDate: SortableDates?): GraphQlResult<FaciaRecipeSearchQuery.FaciaRecipeSearch?> {
+        val result = feastGraphQlClient.query(
+            FaciaRecipeSearchQuery(
+                query = query,
+                celebrationId = celebrationId,
+                dietId = dietId,
+                uprateByDate = uprateByDate,
+            )
+        )
+        return if (result is GraphQlResult.Success) {
+            GraphQlResult.Success(result.value.curatedContainerById)
+        } else {
+            result as GraphQlResult.Failure
+        }
+    }
 }
 
 private const val DISH_OF_THE_DAY_RECIPE_ALIAS = "dotd"

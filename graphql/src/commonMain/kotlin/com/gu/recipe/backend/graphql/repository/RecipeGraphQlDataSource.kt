@@ -22,4 +22,6 @@ interface RecipeGraphQlDataSource {
     suspend fun getCuratedCollection(
         collectionId: String
     ): GraphQlResult<CuratedContainerByIdQuery.CuratedContainerById?>
+    
+    suspend fun faciaRecipeSearch(query: String, celebrationId: String?, dietId: String?, uprateByDate: SortableDates?): GraphQlResult<FaciaRecipeSearchQuery.FaciaRecipeSearch?>
 }

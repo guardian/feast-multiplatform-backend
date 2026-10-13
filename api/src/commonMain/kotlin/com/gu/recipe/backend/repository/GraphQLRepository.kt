@@ -87,4 +87,14 @@ interface GraphQLRepository {
     suspend fun getCuratedCollection(
         collectionId: String,
     ): CuratedContainerByIdQuery.CuratedContainerById?
+
+    @Throws(
+        GraphQLResponseException::class,
+        GraphQLMissingDataException::class,
+        GraphQLTransportException::class,
+        GraphQLUnexpectedException::class,
+        CancellationException::class,
+        IllegalArgumentException::class,
+    )
+    suspend fun faciaRecipeSearch(): FaciaRecipeSearchQuery.FaciaRecipeSearch?
 }

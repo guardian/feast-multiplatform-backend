@@ -26,6 +26,20 @@ It encapsulates network communication, Apollo GraphQL query execution, response 
 
 ---
 
+## How do I add a new query to the library?
+
+1. Develop the GraphQL query in the tool of your choice - Postman, Hoppscotch, GraphiQL, etc.
+2. Once you have it working as you intend, create a new .graphql file in `graphql/src/commonMain/graphql`
+3. Name the file the same as your query name - ensure that it has a good descriptive name. Look at the examples
+there to see how it works
+4. Run `./gradlew :graphql:generateApolloSources` to update the models
+5. Update `api/commonMain/kotlin/com/gu/recipe/backend/repository/GraphQLRepositoryImpl.kt` to wire your query through to the API
+6. Update `api/commonMain/kotlin/com/gu/recipe/backend/repository/GraphQLRepository.kt` to make the interface agree
+7. Do a local build and import into your project
+8. You should have a new query method on your `GraphQLRepository` interface
+9. 
+---
+
 ## How to publish to Maven Central?
 
 > This section will be filled once we have a release YAML file ready in the CI pipeline to publish to Maven Central.
