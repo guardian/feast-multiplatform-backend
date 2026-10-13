@@ -2,6 +2,8 @@ import { FeastGraphQL as KotlinFeastGraphQL } from "./kotlin/feast-multiplatform
 import type {
   CuratedContainerByIdQuery,
   CuratedContainerByIdQueryVariables,
+  FaciaRecipeSearchQuery,
+  FaciaRecipeSearchQueryVariables,
   GetDishOfTheDayRecipeQuery,
   GetDishOfTheDayRecipeQueryVariables,
   GetFrontsByRegionQuery,
@@ -37,6 +39,15 @@ export class FeastGraphQL {
     collectionId: CuratedContainerByIdQueryVariables["collectionId"],
   ): Promise<CuratedContainerByIdQuery["curatedContainerById"]> {
     return JSON.parse(await this.client.getCuratedCollection(collectionId));
+  }
+
+  async faciaRecipeSearch(
+    query: FaciaRecipeSearchQueryVariables["query"],
+    celebrationId: string | null = null,
+    dietId: string | null = null,
+    uprateByDate: FaciaRecipeSearchQueryVariables["uprateByDate"] = null,
+  ): Promise<FaciaRecipeSearchQuery["search"]> {
+    return JSON.parse(await this.client.faciaRecipeSearch(query, celebrationId, dietId, uprateByDate));
   }
 
   close(): void {

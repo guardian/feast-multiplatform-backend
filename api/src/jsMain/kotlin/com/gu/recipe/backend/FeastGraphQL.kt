@@ -13,6 +13,7 @@ import com.gu.recipe.backend.graphql.config.GraphQlConfig
 import com.gu.recipe.backend.graphql.generated.adapter.CuratedContainerByIdQuery_ResponseAdapter
 import com.gu.recipe.backend.graphql.generated.adapter.GetDishOfTheDayRecipeQuery_ResponseAdapter
 import com.gu.recipe.backend.graphql.generated.adapter.GetFrontsByRegionQuery_ResponseAdapter
+import com.gu.recipe.backend.graphql.generated.adapter.FaciaRecipeSearchQuery_ResponseAdapter
 import com.gu.recipe.backend.graphql.generated.type.Editions
 import com.gu.recipe.backend.graphql.generated.type.Regions
 import com.gu.recipe.backend.graphql.repository.ApolloRecipeGraphQlDataSource
@@ -55,6 +56,19 @@ class FeastGraphQL(baseUrl: String) {
         buildJsonString {
             CuratedContainerByIdQuery_ResponseAdapter.CuratedContainerById.obj().nullable()
                 .toJson(this, CustomScalarAdapters.Empty, collection)
+        }
+    }
+
+    fun faciaRecipeSearch(
+        query: String,
+        celebrationId: String?,
+        dietId: String?,
+        uprateByDate: String?
+    ): Promise<String> = scope.promise {
+        val result = repository.faciaRecipeSearch(query, celebrationId, dietId, uprateByDate)
+        buildJsonString {
+            FaciaRecipeSearchQuery_ResponseAdapter.Search.obj().nullable()
+                .toJson(this, CustomScalarAdapters.Empty, result)
         }
     }
 

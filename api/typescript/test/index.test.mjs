@@ -64,10 +64,36 @@ test("curated collections preserve nullable fields and union members", async () 
   });
 });
 
-test("missing containers return native null", async () => {
-  await withResponse({ data: { Container: null, curatedContainerById: null } }, async (api) => {
+test("facia search returns objects and forwards filters", async () => {
+  const search = { maxScore: 1, results: [] };
+  await withResponse({ data: { search } }, async (api, requests) => {
+    assert.deepEqual(
+      await api.faciaRecipeSearch("soup", "celebration-1", "diet-1", "firstPublishedDate"),
+      search,
+    );
+    assert.equal(requests[0].operationName, "FaciaRecipeSearch");
+    assert.deepEqual(requests[0].variables, {
+      query: "soup",
+      celebrationId: ["celebration-1"],
+      dietId: ["diet-1"],
+      uprateByDate: "firstPublishedDate",
+    });
+  });
+});
+
+test("facia search omits unspecified filters", async () => {
+  const search = { maxScore: 0, results: [] };
+  await withResponse({ data: { search } }, async (api, requests) => {
+    assert.deepEqual(await api.faciaRecipeSearch(""), search);
+    assert.deepEqual(requests[0].variables, { query: "" });
+  });
+});
+
+test("missing containers and search return native null", async () => {
+  await withResponse({ data: { Container: null, curatedContainerById: null, search: null } }, async (api) => {
     assert.equal(await api.getDishOfTheDayContainer("northern", "all"), null);
     assert.equal(await api.getCuratedCollection(collectionId), null);
+    assert.equal(await api.faciaRecipeSearch("soup"), null);
   });
 });
 
