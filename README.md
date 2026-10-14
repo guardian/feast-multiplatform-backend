@@ -79,7 +79,7 @@ npm install /absolute/path/to/feast-multiplatform-backend-api-<version>.tgz
 ```
 
 ```typescript
-import { FeastGraphQL, type Regions } from "feast-multiplatform-backend-api";
+import { FeastGraphQL, type Regions } from "@guardian/feast-multiplatform-backend-api";
 
 const api = new FeastGraphQL("https://your-feast-api.example");
 const region: Regions = "northern";
