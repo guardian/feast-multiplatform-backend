@@ -1,6 +1,14 @@
 // Signature format: 4.0
 package com.gu.recipe.backend {
 
+  public final class FeastGraphQL {
+    ctor public FeastGraphQL(String baseUrl);
+    method public void close();
+    method public Promise<java.lang.String!> getCuratedCollection(String collectionId);
+    method public Promise<java.lang.String!> getDishOfTheDayContainer(String region, String edition);
+    method public Promise<java.lang.String!> getFrontByRegion(String region, String edition, int recipesLimit);
+  }
+
   public final class FeastGraphQLiOS {
     method public com.gu.recipe.backend.repository.GraphQLRepository graphQLRepository();
     method public void start(String baseUrl);
