@@ -75,6 +75,8 @@ enum ContentTypes {
 }
 
 type CustomMessage {
+  size: PromptSize!
+
   foregroundColor: AppColour!
 
   backgroundColor: AppColour!
@@ -84,8 +86,6 @@ type CustomMessage {
   ctaLabel: String
 
   supporting: String
-
-  size: PromptSize!
 
   isIcon: Boolean!
 
@@ -103,7 +103,7 @@ type CustomMessageInsert {
 type FeastAppContainer {
   body: String
 
-  targetedRegions: [String!]
+  darkPalette: Palette
 
   excludedRegions: [String!]
 
@@ -118,6 +118,8 @@ type FeastAppContainer {
   hideFromFront: Boolean
 
   title: String!
+
+  targetedRegions: [String!]
 
   lightPalette: Palette
 
@@ -559,6 +561,8 @@ enum SortableDates {
 }
 
 type SponsorData {
+  sponsorLink: String!
+
   highContrastSponsorLogoHeight: Int
 
   highContrastSponsorLogo: String
@@ -566,8 +570,6 @@ type SponsorData {
   sponsorLogoWidth: Int
 
   sponsorLogo: String!
-
-  sponsorLink: String!
 
   sponsorshipType: String!
 

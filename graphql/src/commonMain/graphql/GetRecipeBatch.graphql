@@ -1,0 +1,17 @@
+query GetRecipeBatch($recipeIds: [String!]) {
+    recipes(limit: 500, ids: $recipeIds) {
+        id
+        canonicalArticle
+        appExclusiveBranding
+        title
+        lastModifiedDate
+        publishedDate
+        firstPublishedDate
+        featuredImage {
+            templateUrl
+        }
+        contributors {
+            webTitle
+        }
+    }
+}

@@ -7,9 +7,11 @@ import com.gu.recipe.backend.exceptions.GraphQLUnexpectedException
 import com.gu.recipe.backend.graphql.GraphQLError
 import com.gu.recipe.backend.graphql.GraphQlResult
 import com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery
+import com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery
 import com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery
 import com.gu.recipe.backend.graphql.generated.GetDishOfTheDayRecipeQuery
 import com.gu.recipe.backend.graphql.generated.GetFrontsByRegionQuery
+import com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery
 import com.gu.recipe.backend.graphql.generated.type.Editions
 import com.gu.recipe.backend.graphql.generated.type.Regions
 import com.gu.recipe.backend.graphql.generated.type.SortableDates
@@ -155,6 +157,10 @@ private class FakeRecipeGraphQlDataSource(
         GraphQlResult.Success(null),
     private val faciaSearchResult: GraphQlResult<FaciaRecipeSearchQuery.Search?> =
         GraphQlResult.Success(null),
+    private val faciaChefSearchResult: GraphQlResult<List<FaciaChefSearchQuery.Chef>> =
+        GraphQlResult.Success(emptyList()),
+    private val recipeBatchResult: GraphQlResult<List<GetRecipeBatchQuery.Recipe>> =
+        GraphQlResult.Success(emptyList()),
 ) : RecipeGraphQlDataSource {
 
     var capturedCollectionId: String? = null
@@ -186,4 +192,13 @@ private class FakeRecipeGraphQlDataSource(
         dietId: String?,
         uprateByDate: SortableDates?,
     ): GraphQlResult<FaciaRecipeSearchQuery.Search?> = faciaSearchResult
+
+    override suspend fun faciaChefSearch(
+        limit: Int,
+        q: String?,
+    ): GraphQlResult<List<FaciaChefSearchQuery.Chef>> = faciaChefSearchResult
+
+    override suspend fun getRecipeBatch(
+        recipeIds: List<String>?,
+    ): GraphQlResult<List<GetRecipeBatchQuery.Recipe>> = recipeBatchResult
 }

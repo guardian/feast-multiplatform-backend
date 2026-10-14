@@ -1,0 +1,12 @@
+query FaciaChefSearch($limit: Int!, $q: String) {
+    chefs(limit: $limit, q: $q) {
+        ... on ChefBio {
+            webTitle
+            bylineImageUrl
+            contributorId
+        }
+        ... on byline {
+            webTitle
+        }
+    }
+}

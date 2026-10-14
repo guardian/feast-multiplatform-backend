@@ -14,6 +14,8 @@ import com.gu.recipe.backend.graphql.generated.adapter.CuratedContainerByIdQuery
 import com.gu.recipe.backend.graphql.generated.adapter.GetDishOfTheDayRecipeQuery_ResponseAdapter
 import com.gu.recipe.backend.graphql.generated.adapter.GetFrontsByRegionQuery_ResponseAdapter
 import com.gu.recipe.backend.graphql.generated.adapter.FaciaRecipeSearchQuery_ResponseAdapter
+import com.gu.recipe.backend.graphql.generated.adapter.FaciaChefSearchQuery_ResponseAdapter
+import com.gu.recipe.backend.graphql.generated.adapter.GetRecipeBatchQuery_ResponseAdapter
 import com.gu.recipe.backend.graphql.generated.type.Editions
 import com.gu.recipe.backend.graphql.generated.type.Regions
 import com.gu.recipe.backend.graphql.repository.ApolloRecipeGraphQlDataSource
@@ -69,6 +71,22 @@ class FeastGraphQL(baseUrl: String) {
         buildJsonString {
             FaciaRecipeSearchQuery_ResponseAdapter.Search.obj().nullable()
                 .toJson(this, CustomScalarAdapters.Empty, result)
+        }
+    }
+
+    fun faciaChefSearch(limit: Int, q: String?): Promise<String> = scope.promise {
+        val chefs = repository.faciaChefSearch(limit, q)
+        buildJsonString {
+            FaciaChefSearchQuery_ResponseAdapter.Chef.obj().list()
+                .toJson(this, CustomScalarAdapters.Empty, chefs)
+        }
+    }
+
+    fun getRecipeBatch(recipeIds: Array<String>?): Promise<String> = scope.promise {
+        val recipes = repository.getRecipeBatch(recipeIds?.toList())
+        buildJsonString {
+            GetRecipeBatchQuery_ResponseAdapter.Recipe.obj().list()
+                .toJson(this, CustomScalarAdapters.Empty, recipes)
         }
     }
 

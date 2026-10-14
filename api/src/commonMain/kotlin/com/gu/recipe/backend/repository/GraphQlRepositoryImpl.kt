@@ -3,8 +3,10 @@ package com.gu.recipe.backend.repository
 import com.gu.recipe.backend.exceptions.toRepositoryException
 import com.gu.recipe.backend.graphql.GraphQlResult
 import com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery
+import com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery
 import com.gu.recipe.backend.graphql.generated.GetDishOfTheDayRecipeQuery
 import com.gu.recipe.backend.graphql.generated.GetFrontsByRegionQuery
+import com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery
 import com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery
 import com.gu.recipe.backend.graphql.generated.type.SortableDates
 import com.gu.recipe.backend.graphql.generated.type.Editions
@@ -47,6 +49,17 @@ internal class GraphQlRepositoryImpl(
         val actualDateField = uprateByDate?.let { SortableDates.valueOf(it) }
         return dataSource.faciaRecipeSearch(query, celebrationId, dietId, actualDateField).getOrThrow()
     }
+
+    override suspend fun faciaChefSearch(
+        limit: Int,
+        q: String?,
+    ): List<FaciaChefSearchQuery.Chef> =
+        dataSource.faciaChefSearch(limit, q).getOrThrow()
+
+    override suspend fun getRecipeBatch(
+        recipeIds: List<String>?,
+    ): List<GetRecipeBatchQuery.Recipe> =
+        dataSource.getRecipeBatch(recipeIds).getOrThrow()
 }
 
 private fun <T> GraphQlResult<T>.getOrThrow(): T = when (this) {
