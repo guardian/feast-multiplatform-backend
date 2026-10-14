@@ -141,3 +141,48 @@ jobs:
               release_id: release.data.id,
               draft: false
             });
+
+  publish-npm:
+    needs: release
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref }}
+
+      - name: Pull latest changes from release job
+        run: git pull origin ${{ github.ref_name }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Set up JDK
+        uses: actions/setup-java@v5
+        with:
+          java-version: '21'
+          distribution: 'jetbrains'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set version
+        env:
+          VERSION: ${{ needs.release.outputs.RELEASE_VERSION }}
+        run: |
+          cat version.txt
+          echo $VERSION > version.txt
+          cat version.txt
+
+      - name: Build js target
+        run: ./gradlew :api:packJavaScriptLibrary
+
+      - name: Publish to npm
+        working-directory: api/build/dist/js/typescriptLibrary
+        run: npm publish --access public
