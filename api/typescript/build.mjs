@@ -21,6 +21,10 @@ switch (process.argv[2]) {
     await writeFile(new URL("package.json", output), JSON.stringify({
       ...metadata,
       name: "@guardian/feast-multiplatform-backend-api",
+      repository: {
+        "url": "https://github.com/guardian/feast-multiplatform-backend",
+        "type": "git"
+      },
       type: "module",
       main: "./index.js",
       types: "./index.d.ts",
