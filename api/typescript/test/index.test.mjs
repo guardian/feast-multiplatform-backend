@@ -82,7 +82,7 @@ test("facia search returns objects and forwards filters", async () => {
 });
 
 test("facia search omits unspecified filters", async () => {
-  const search = { maxScore: 0, results: [] };
+  const search = { maxScore: null, results: [] };
   await withResponse({ data: { search } }, async (api, requests) => {
     assert.deepEqual(await api.faciaRecipeSearch(""), search);
     assert.deepEqual(requests[0].variables, { query: "" });

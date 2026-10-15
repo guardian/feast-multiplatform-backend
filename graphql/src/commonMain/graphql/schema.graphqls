@@ -13,19 +13,19 @@ type Chef {
 }
 
 type ChefBio {
-  bio: String
+  webUrl: String!
 
   apiUrl: String
 
-  webUrl: String!
-
-  webTitle: String!
-
   bylineLargeImageUrl: String
+
+  bio: String
 
   contributorId: String!
 
   bylineImageUrl: String
+
+  webTitle: String!
 
   """
   returns all recipes
@@ -34,15 +34,15 @@ type ChefBio {
 }
 
 type ChefData {
-  foregroundHex: String
-
-  image: String
-
   backgroundHex: String
+
+  id: String!
+
+  foregroundHex: String
 
   bio: String
 
-  id: String!
+  image: String
 
   """
   Background information about this chef
@@ -75,25 +75,25 @@ enum ContentTypes {
 }
 
 type CustomMessage {
-  size: PromptSize!
-
-  foregroundColor: AppColour!
-
-  backgroundColor: AppColour!
+  ctaLabel: String
 
   image: String!
 
-  ctaLabel: String
-
-  supporting: String
+  foregroundColor: AppColour!
 
   isIcon: Boolean!
 
   title: String!
 
+  size: PromptSize!
+
   isDismissable: Boolean!
 
   showChevron: Boolean!
+
+  backgroundColor: AppColour!
+
+  supporting: String
 }
 
 type CustomMessageInsert {
@@ -101,27 +101,25 @@ type CustomMessageInsert {
 }
 
 type FeastAppContainer {
-  body: String
-
-  darkPalette: Palette
-
-  excludedRegions: [String!]
-
-  image: String
-
-  identityId: String
+  hideFromFront: Boolean
 
   id: uuid!
 
-  darkPalette: Palette
+  body: String
 
-  hideFromFront: Boolean
+  image: String
 
-  title: String!
+  excludedRegions: [String!]
+
+  lightPalette: Palette
 
   targetedRegions: [String!]
 
-  lightPalette: Palette
+  title: String!
+
+  identityId: String
+
+  darkPalette: Palette
 
   items: [item!]!
 }
@@ -142,9 +140,9 @@ type Insert {
 type KeywordStats {
   sumOtherDocCount: Int!
 
-  buckets: [StatBucket!]!
-
   docCountErrorUpperBound: Int!
+
+  buckets: [StatBucket!]!
 }
 
 type KeywordSuggestionsInsert {
@@ -170,23 +168,23 @@ enum OriginalMeasuringSystem {
 }
 
 type Palette {
-  foregroundHex: String
-
   backgroundHex: String
+
+  foregroundHex: String
 }
 
 type PrivateNote {
-  owner: Int!
-
-  collectionId: String
-
   recipeId: String!
 
   pk: Int!
 
   noteText: String
 
+  owner: Int!
+
   firstPersistedAt: ZonedDateTime!
+
+  collectionId: String
 
   lastModified: ZonedDateTime!
 }
@@ -238,7 +236,7 @@ type Query {
   """
   returns information about our chefs
   """
-  chefs(limit: Int!, offset: Int, q: String): [contributor!]!
+  chefs(limit: Int!, offset: Int, q: String, ids: [String!]): [contributor!]!
 
   """
   information about a specific chef
@@ -257,6 +255,10 @@ A field containing a raw JSON object
 scalar RawJson
 
 type Recipe {
+  difficultyLevel: String
+
+  id: String!
+
   publishedDate: LocalDateTime
 
   appExclusiveBranding: Boolean!
@@ -269,17 +271,13 @@ type Recipe {
 
   checksumV2: String
 
-  difficultyLevel: String
-
   firstPublishedDate: LocalDateTime
-
-  id: String!
 
   canonicalArticle: String
 
-  originalMeasuringSystem: OriginalMeasuringSystem!
-
   title: String
+
+  originalMeasuringSystem: OriginalMeasuringSystem!
 
   lastModifiedDate: LocalDateTime
 
@@ -430,21 +428,21 @@ type RecipeReference {
 }
 
 type SavedCollection {
-  owner: Int!
-
-  collectionId: String!
+  contentType: ContentTypes!
 
   pk: Int!
 
-  contentType: ContentTypes!
-
   softDeleted: Boolean!
 
-  lastModified: ZonedDateTime!
+  owner: Int!
+
+  title: String!
 
   collectionType: CollectionTypes!
 
-  title: String!
+  collectionId: String!
+
+  lastModified: ZonedDateTime!
 
   """
   Recipes saved to this collection
@@ -463,9 +461,9 @@ type SavedCollection {
 }
 
 type SavedRecipe {
-  collectionId: String
-
   firstPersistedAt: ZonedDateTime!
+
+  collectionId: String
 
   lastModified: ZonedDateTime!
 
@@ -530,7 +528,7 @@ type SearchHit {
 type SearchResponse {
   stats: StatsSection
 
-  maxScore: Float!
+  maxScore: Float
 
   """
   The results of the search
@@ -581,9 +579,9 @@ type SponsorData {
 }
 
 type StatBucket {
-  docCount: Int!
-
   key: String!
+
+  docCount: Int!
 }
 
 type StatsSection {
@@ -603,19 +601,19 @@ type SubCollection {
 }
 
 type SubCollectionData {
+  id: uuid
+
   body: String
 
   image: String
 
-  id: uuid
-
-  darkPalette: Palette
-
-  byline: String
+  lightPalette: Palette
 
   title: String!
 
-  lightPalette: Palette
+  byline: String
+
+  darkPalette: Palette
 
   """
   The recipes that make up this collection
