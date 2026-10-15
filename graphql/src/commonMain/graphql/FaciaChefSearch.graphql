@@ -1,5 +1,5 @@
-query FaciaChefSearch($limit: Int!, $q: String) {
-    chefs(limit: $limit, q: $q) {
+query FaciaChefSearch($limit: Int!, $q: String, $idList: [String!]) {
+    chefs(limit: $limit, q: $q, ids: $idList) {
         ... on ChefBio {
             webTitle
             bylineImageUrl

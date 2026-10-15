@@ -56,8 +56,9 @@ export class FeastGraphQL {
   async faciaChefSearch(
     limit: FaciaChefSearchQueryVariables["limit"],
     q: FaciaChefSearchQueryVariables["q"] = null,
+    idList: Array<string> | null = null,
   ): Promise<FaciaChefSearchQuery["chefs"]> {
-    return JSON.parse(await this.client.faciaChefSearch(limit, q));
+    return JSON.parse(await this.client.faciaChefSearch(limit, q, idList));
   }
 
   async getRecipeBatch(

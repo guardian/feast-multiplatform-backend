@@ -53,8 +53,9 @@ internal class GraphQlRepositoryImpl(
     override suspend fun faciaChefSearch(
         limit: Int,
         q: String?,
+        ids: Array<String>?
     ): List<FaciaChefSearchQuery.Chef> =
-        dataSource.faciaChefSearch(limit, q).getOrThrow()
+        dataSource.faciaChefSearch(limit, q, ids).getOrThrow()
 
     override suspend fun getRecipeBatch(
         recipeIds: List<String>?,

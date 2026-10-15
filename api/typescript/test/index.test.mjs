@@ -95,7 +95,7 @@ test("facia chef search returns chef and byline results", async () => {
     { __typename: "byline", webTitle: "The Kitchen" },
   ];
   await withResponse({ data: { chefs } }, async (api, requests) => {
-    assert.deepEqual(await api.faciaChefSearch(10, "chef"), chefs);
+    assert.deepEqual(await api.faciaChefSearch(10, "chef", null), chefs);
     assert.equal(requests[0].operationName, "FaciaChefSearch");
     assert.deepEqual(requests[0].variables, { limit: 10, q: "chef" });
   });

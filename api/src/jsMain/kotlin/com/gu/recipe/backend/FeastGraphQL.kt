@@ -74,8 +74,8 @@ class FeastGraphQL(baseUrl: String) {
         }
     }
 
-    fun faciaChefSearch(limit: Int, q: String?): Promise<String> = scope.promise {
-        val chefs = repository.faciaChefSearch(limit, q)
+    fun faciaChefSearch(limit: Int, q: String?, ids: Array<String>?): Promise<String> = scope.promise {
+        val chefs = repository.faciaChefSearch(limit, q, ids)
         buildJsonString {
             FaciaChefSearchQuery_ResponseAdapter.Chef.obj().list()
                 .toJson(this, CustomScalarAdapters.Empty, chefs)

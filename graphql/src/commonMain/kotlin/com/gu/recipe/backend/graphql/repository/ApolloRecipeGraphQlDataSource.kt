@@ -95,6 +95,7 @@ class ApolloRecipeGraphQlDataSource(
     override suspend fun faciaChefSearch(
         limit: Int,
         q: String?,
+        ids: Array<String>?
     ): GraphQlResult<List<FaciaChefSearchQuery.Chef>> {
         val result = feastGraphQlClient.query(
             FaciaChefSearchQuery(

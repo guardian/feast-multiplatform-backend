@@ -37,6 +37,7 @@ interface RecipeGraphQlDataSource {
     suspend fun faciaChefSearch(
         limit: Int,
         q: String?,
+        ids: Array<String>?
     ): GraphQlResult<List<FaciaChefSearchQuery.Chef>>
 
     suspend fun getRecipeBatch(

@@ -142,6 +142,7 @@ interface GraphQLRepository {
     suspend fun faciaChefSearch(
         limit: Int,
         q: String?,
+        ids: Array<String>?
     ): List<FaciaChefSearchQuery.Chef>
 
     /**
