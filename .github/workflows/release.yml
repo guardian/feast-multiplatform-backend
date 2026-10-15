@@ -190,7 +190,7 @@ jobs:
         shell: bash
         run: |
           tag=latest
-          if [[ "${version%%+*}" == *-* ]]; then
+          if [[ "${VERSION%%+*}" == *-* ]]; then
             tag=next
           fi
           npm publish --access public --tag "$tag"
