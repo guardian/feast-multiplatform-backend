@@ -13,19 +13,19 @@ type Chef {
 }
 
 type ChefBio {
-  contributorId: String!
-
   bio: String
 
-  webUrl: String!
-
-  bylineImageUrl: String
-
   apiUrl: String
+
+  webUrl: String!
 
   webTitle: String!
 
   bylineLargeImageUrl: String
+
+  contributorId: String!
+
+  bylineImageUrl: String
 
   """
   returns all recipes
@@ -75,25 +75,25 @@ enum ContentTypes {
 }
 
 type CustomMessage {
-  supporting: String
+  foregroundColor: AppColour!
 
   backgroundColor: AppColour!
 
+  image: String!
+
   ctaLabel: String
 
-  showChevron: Boolean!
-
-  isDismissable: Boolean!
-
-  foregroundColor: AppColour!
-
-  image: String!
+  supporting: String
 
   size: PromptSize!
 
+  isIcon: Boolean!
+
   title: String!
 
-  isIcon: Boolean!
+  isDismissable: Boolean!
+
+  showChevron: Boolean!
 }
 
 type CustomMessageInsert {
@@ -138,11 +138,11 @@ type Insert {
 }
 
 type KeywordStats {
+  sumOtherDocCount: Int!
+
   buckets: [StatBucket!]!
 
   docCountErrorUpperBound: Int!
-
-  sumOtherDocCount: Int!
 }
 
 type KeywordSuggestionsInsert {
@@ -180,13 +180,13 @@ type PrivateNote {
 
   recipeId: String!
 
-  noteText: String
-
   pk: Int!
 
-  lastModified: ZonedDateTime!
+  noteText: String
 
   firstPersistedAt: ZonedDateTime!
+
+  lastModified: ZonedDateTime!
 }
 
 enum PromptSize {
@@ -216,7 +216,7 @@ type Query {
   """
   returns all recipes
   """
-  recipes(limit: Int!, offset: Int, sortBy: recipeSortFields, sortDirection: recipeSortDirections, techniques: [String!], utensilsAppliances: [String!], contributors: [String!], bylines: [String!], diets: [String!], cuisines: [String!], celebrations: [String!], mealTypes: [String!]): [Recipe!]!
+  recipes(limit: Int!, offset: Int, sortBy: recipeSortFields, sortDirection: recipeSortDirections, techniques: [String!], utensilsAppliances: [String!], contributors: [String!], bylines: [String!], diets: [String!], cuisines: [String!], celebrations: [String!], mealTypes: [String!], ids: [String!]): [Recipe!]!
 
   """
   returns curation ('fronts') information
@@ -236,7 +236,7 @@ type Query {
   """
   returns information about our chefs
   """
-  chefs(limit: Int!, offset: Int): [contributor!]!
+  chefs(limit: Int!, offset: Int, q: String): [contributor!]!
 
   """
   information about a specific chef
@@ -255,33 +255,33 @@ A field containing a raw JSON object
 scalar RawJson
 
 type Recipe {
-  composerId: String
+  publishedDate: LocalDateTime
 
-  lastModifiedDate: LocalDateTime
+  appExclusiveBranding: Boolean!
+
+  isAppReady: Boolean
 
   description: String
 
-  appExclusiveBranding: Boolean!
+  composerId: String
 
   checksumV2: String
 
   difficultyLevel: String
 
-  originalMeasuringSystem: OriginalMeasuringSystem!
-
   firstPublishedDate: LocalDateTime
-
-  isAppReady: Boolean
 
   id: String!
 
-  bookCredit: String
-
   canonicalArticle: String
 
-  publishedDate: LocalDateTime
+  originalMeasuringSystem: OriginalMeasuringSystem!
 
   title: String
+
+  lastModifiedDate: LocalDateTime
+
+  bookCredit: String
 
   ingredients: [ingredientSection!]!
 
@@ -434,11 +434,11 @@ type SavedCollection {
 
   pk: Int!
 
-  lastModified: ZonedDateTime!
-
   contentType: ContentTypes!
 
   softDeleted: Boolean!
+
+  lastModified: ZonedDateTime!
 
   collectionType: CollectionTypes!
 
@@ -463,9 +463,9 @@ type SavedCollection {
 type SavedRecipe {
   collectionId: String
 
-  lastModified: ZonedDateTime!
-
   firstPersistedAt: ZonedDateTime!
+
+  lastModified: ZonedDateTime!
 
   """
   Content of the saved recipe
@@ -526,9 +526,9 @@ type SearchHit {
 }
 
 type SearchResponse {
-  maxScore: Float!
-
   stats: StatsSection
+
+  maxScore: Float!
 
   """
   The results of the search
@@ -559,23 +559,23 @@ enum SortableDates {
 }
 
 type SponsorData {
-  sponsorName: String!
-
-  sponsorshipType: String!
-
-  sponsorLogoHeight: Int
-
   highContrastSponsorLogoHeight: Int
 
-  highContrastSponsorLogoWidth: Int
+  highContrastSponsorLogo: String
+
+  sponsorLogoWidth: Int
 
   sponsorLogo: String!
 
   sponsorLink: String!
 
-  sponsorLogoWidth: Int
+  sponsorshipType: String!
 
-  highContrastSponsorLogo: String
+  sponsorName: String!
+
+  sponsorLogoHeight: Int
+
+  highContrastSponsorLogoWidth: Int
 }
 
 type StatBucket {
@@ -591,9 +591,9 @@ type StatsSection {
 
   cuisineIds: KeywordStats
 
-  suitableForDietIds: KeywordStats
-
   contributors: KeywordStats
+
+  suitableForDietIds: KeywordStats
 }
 
 type SubCollection {
