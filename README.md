@@ -26,6 +26,22 @@ It encapsulates network communication, Apollo GraphQL query execution, response 
 
 ---
 
+## How do I add a new query to the library?
+
+1. Develop the GraphQL query in the tool of your choice - Postman, Hoppscotch, GraphiQL, etc.
+2. Once you have it working as you intend, create a new .graphql file in `graphql/src/commonMain/graphql`
+3. Name the file the same as your query name - ensure that it has a good descriptive name. Look at the examples
+there to see how it works
+4. Run `./gradlew :graphql:generateApolloSources` to update the models
+5. Update `graphql/src/commonMain/kotlin/com/gu/recipe/backend/graphql/repository/ApolloRecipeGraphQlDataSource.kt` to create a query function on the internal interface
+6. Update  `graphql/src/commonMain/kotlin/com/gu/recipe/backend/graphql/repository/RecipeGraphQlDataource.kt` to update the interface to agree with your modifications in stage 5
+7. Update `api/src/commonMain/kotlin/com/gu/recipe/backend/repository/GraphQLRepositoryImpl.kt` to expose the query function on the public interface
+8. Update `api/src/commonMain/kotlin/com/gu/recipe/backend/repository/GraphQLRepository.kt` to make the interface agree with your changes in stage 7
+9. Update `api/src/jsMain/kotlin/com/gu/recipe/backend/FeastGraphQL.kt` to expose the public query function to Typescript
+10. Do a local build and import into your project
+11. You should have a new query method on your `GraphQLRepository` interface
+---
+
 ## How to publish to Maven Central?
 
 > This section will be filled once we have a release YAML file ready in the CI pipeline to publish to Maven Central.
@@ -108,6 +124,8 @@ The exported `FeastGraphQL` methods return native Promises of typed JavaScript o
 - `getFrontByRegion(region, edition, recipesLimit)` returns `GetFrontsByRegionQuery["Front"]`.
 - `getDishOfTheDayContainer(region, edition)` returns `GetDishOfTheDayRecipeQuery["Container"]`, including `null`.
 - `getCuratedCollection(collectionId)` returns `CuratedContainerByIdQuery["curatedContainerById"]`, including `null`, and validates the UUID.
+- `faciaChefSearch(limit, q?)` returns `FaciaChefSearchQuery["chefs"]`.
+- `getRecipeBatch(recipeIds?)` returns `GetRecipeBatchQuery["recipes"]`.
 - `close()` cancels pending requests and releases the client. Create a new instance to make further requests.
 
 Generated `Regions` and `Editions` types restrict inputs to the schema's enum values:

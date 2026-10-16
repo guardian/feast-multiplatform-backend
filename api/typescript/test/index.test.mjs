@@ -64,10 +64,81 @@ test("curated collections preserve nullable fields and union members", async () 
   });
 });
 
-test("missing containers return native null", async () => {
-  await withResponse({ data: { Container: null, curatedContainerById: null } }, async (api) => {
+test("facia search returns objects and forwards filters", async () => {
+  const search = { maxScore: 1, results: [] };
+  await withResponse({ data: { search } }, async (api, requests) => {
+    assert.deepEqual(
+      await api.faciaRecipeSearch("soup", "celebration-1", "diet-1", "firstPublishedDate"),
+      search,
+    );
+    assert.equal(requests[0].operationName, "FaciaRecipeSearch");
+    assert.deepEqual(requests[0].variables, {
+      query: "soup",
+      celebrationId: ["celebration-1"],
+      dietId: ["diet-1"],
+      uprateByDate: "firstPublishedDate",
+    });
+  });
+});
+
+test("facia search omits unspecified filters", async () => {
+  const search = { maxScore: null, results: [] };
+  await withResponse({ data: { search } }, async (api, requests) => {
+    assert.deepEqual(await api.faciaRecipeSearch(""), search);
+    assert.deepEqual(requests[0].variables, { query: "" });
+  });
+});
+
+test("facia chef search returns chef and byline results", async () => {
+  const chefs = [
+    { __typename: "ChefBio", webTitle: "Jane Chef", bylineImageUrl: null, contributorId: "chef-1" },
+    { __typename: "byline", webTitle: "The Kitchen" },
+  ];
+  await withResponse({ data: { chefs } }, async (api, requests) => {
+    assert.deepEqual(await api.faciaChefSearch(10, "chef", null), chefs);
+    assert.equal(requests[0].operationName, "FaciaChefSearch");
+    assert.deepEqual(requests[0].variables, { limit: 10, q: "chef" });
+  });
+});
+
+test("facia chef search omits an unspecified search term", async () => {
+  await withResponse({ data: { chefs: [] } }, async (api, requests) => {
+    assert.deepEqual(await api.faciaChefSearch(10), []);
+    assert.deepEqual(requests[0].variables, { limit: 10 });
+  });
+});
+
+test("recipe batch returns selected fields and forwards recipe IDs", async () => {
+  const recipes = [{
+    id: "recipe-1",
+    canonicalArticle: "lifeandstyle/2025/jan/01/soup",
+    appExclusiveBranding: false,
+    title: "Soup",
+    lastModifiedDate: "2025-01-01T00:00:00Z",
+    publishedDate: null,
+    firstPublishedDate: null,
+    featuredImage: { templateUrl: "https://example.invalid/{width}.jpg" },
+    contributors: [{ webTitle: "Jane Chef" }],
+  }];
+  await withResponse({ data: { recipes } }, async (api, requests) => {
+    assert.deepEqual(await api.getRecipeBatch(["recipe-1"]), recipes);
+    assert.equal(requests[0].operationName, "GetRecipeBatch");
+    assert.deepEqual(requests[0].variables, { recipeIds: ["recipe-1"] });
+  });
+});
+
+test("recipe batch omits unspecified recipe IDs", async () => {
+  await withResponse({ data: { recipes: [] } }, async (api, requests) => {
+    assert.deepEqual(await api.getRecipeBatch(), []);
+    assert.deepEqual(requests[0].variables ?? {}, {});
+  });
+});
+
+test("missing containers and search return native null", async () => {
+  await withResponse({ data: { Container: null, curatedContainerById: null, search: null } }, async (api) => {
     assert.equal(await api.getDishOfTheDayContainer("northern", "all"), null);
     assert.equal(await api.getCuratedCollection(collectionId), null);
+    assert.equal(await api.faciaRecipeSearch("soup"), null);
   });
 });
 

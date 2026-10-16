@@ -2,10 +2,15 @@ import { FeastGraphQL as KotlinFeastGraphQL } from "./kotlin/feast-multiplatform
 import type {
   CuratedContainerByIdQuery,
   CuratedContainerByIdQueryVariables,
+  FaciaChefSearchQuery,
+  FaciaChefSearchQueryVariables,
+  FaciaRecipeSearchQuery,
+  FaciaRecipeSearchQueryVariables,
   GetDishOfTheDayRecipeQuery,
   GetDishOfTheDayRecipeQueryVariables,
   GetFrontsByRegionQuery,
   GetFrontsByRegionQueryVariables,
+  GetRecipeBatchQuery,
 } from "./models.js";
 
 export type * from "./schema.js";
@@ -37,6 +42,29 @@ export class FeastGraphQL {
     collectionId: CuratedContainerByIdQueryVariables["collectionId"],
   ): Promise<CuratedContainerByIdQuery["curatedContainerById"]> {
     return JSON.parse(await this.client.getCuratedCollection(collectionId));
+  }
+
+  async faciaRecipeSearch(
+    query: FaciaRecipeSearchQueryVariables["query"],
+    celebrationId: string | null = null,
+    dietId: string | null = null,
+    uprateByDate: FaciaRecipeSearchQueryVariables["uprateByDate"] = null,
+  ): Promise<FaciaRecipeSearchQuery["search"]> {
+    return JSON.parse(await this.client.faciaRecipeSearch(query, celebrationId, dietId, uprateByDate));
+  }
+
+  async faciaChefSearch(
+    limit: FaciaChefSearchQueryVariables["limit"],
+    q: FaciaChefSearchQueryVariables["q"] = null,
+    idList: Array<string> | null = null,
+  ): Promise<FaciaChefSearchQuery["chefs"]> {
+    return JSON.parse(await this.client.faciaChefSearch(limit, q, idList));
+  }
+
+  async getRecipeBatch(
+    recipeIds: Array<string> | null = null,
+  ): Promise<GetRecipeBatchQuery["recipes"]> {
+    return JSON.parse(await this.client.getRecipeBatch(recipeIds));
   }
 
   close(): void {
