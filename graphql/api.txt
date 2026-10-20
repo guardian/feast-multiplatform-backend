@@ -267,6 +267,210 @@ package com.gu.recipe.backend.graphql.generated {
     property public String? forCard;
   }
 
+  public final class FaciaChefSearchQuery implements com.apollographql.apollo.api.Query<com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.Data> {
+    ctor public FaciaChefSearchQuery(int limit, optional com.apollographql.apollo.api.Optional<java.lang.String?> q, optional com.apollographql.apollo.api.Optional<? extends java.util.List<java.lang.String>?> idList);
+    method public com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.Data> adapter();
+    method public int component1();
+    method public com.apollographql.apollo.api.Optional<java.lang.String?> component2();
+    method public com.apollographql.apollo.api.Optional<java.util.List<java.lang.String>?> component3();
+    method public com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery copy(optional int limit, optional com.apollographql.apollo.api.Optional<java.lang.String?> q, optional com.apollographql.apollo.api.Optional<? extends java.util.List<java.lang.String>?> idList);
+    method public String document();
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.Optional<java.util.List<java.lang.String>?> getIdList();
+    method @InaccessibleFromKotlin public int getLimit();
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.Optional<java.lang.String?> getQ();
+    method public String id();
+    method public String name();
+    method public com.apollographql.apollo.api.CompiledField rootField();
+    method public void serializeVariables(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, boolean withDefaultValues);
+    property public com.apollographql.apollo.api.Optional<java.util.List<java.lang.String>?> idList;
+    property public int limit;
+    property public com.apollographql.apollo.api.Optional<java.lang.String?> q;
+    field public static final com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.Companion Companion;
+    field public static final String OPERATION_ID = "923961e0b3f6d16b8a6232b570e1f7deb9b1f3f250ecef7a7698daa9ead43694";
+    field public static final String OPERATION_NAME = "FaciaChefSearch";
+  }
+
+  public static final class FaciaChefSearchQuery.Chef {
+    ctor public FaciaChefSearchQuery.Chef(String __typename, com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.OnChefBio? onChefBio, com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.OnByline? onByline);
+    method public String component1();
+    method public com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.OnChefBio? component2();
+    method public com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.OnByline? component3();
+    method public com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.Chef copy(optional String __typename, optional com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.OnChefBio? onChefBio, optional com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.OnByline? onByline);
+    method @InaccessibleFromKotlin public com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.OnByline? getOnByline();
+    method @InaccessibleFromKotlin public com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.OnChefBio? getOnChefBio();
+    method @InaccessibleFromKotlin public String get__typename();
+    property public String __typename;
+    property public com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.OnByline? onByline;
+    property public com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.OnChefBio? onChefBio;
+  }
+
+  public static final class FaciaChefSearchQuery.Companion implements com.apollographql.apollo.api.ExecutableDefinition<com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.Data> {
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.Data> getADAPTER();
+    method @InaccessibleFromKotlin public String getOPERATION_DOCUMENT();
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledField getROOT_FIELD();
+    property public com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.Data> ADAPTER;
+    property public String OPERATION_DOCUMENT;
+    property public static String OPERATION_ID;
+    property public static String OPERATION_NAME;
+    property public com.apollographql.apollo.api.CompiledField ROOT_FIELD;
+  }
+
+  @com.apollographql.apollo.annotations.ApolloAdaptableWith(adapter=FaciaChefSearchQuery_ResponseAdapter.Data::class) public static final class FaciaChefSearchQuery.Data implements com.apollographql.apollo.api.Query.Data {
+    ctor public FaciaChefSearchQuery.Data(java.util.List<com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.Chef> chefs);
+    method public java.util.List<com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.Chef> component1();
+    method public com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.Data copy(optional java.util.List<com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.Chef> chefs);
+    method @InaccessibleFromKotlin public java.util.List<com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.Chef> getChefs();
+    property public java.util.List<com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.Chef> chefs;
+  }
+
+  public static final class FaciaChefSearchQuery.OnByline {
+    ctor public FaciaChefSearchQuery.OnByline(String webTitle);
+    method public String component1();
+    method public com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.OnByline copy(optional String webTitle);
+    method @InaccessibleFromKotlin public String getWebTitle();
+    property public String webTitle;
+  }
+
+  public static final class FaciaChefSearchQuery.OnChefBio {
+    ctor public FaciaChefSearchQuery.OnChefBio(String webTitle, String? bylineImageUrl, String contributorId);
+    method public String component1();
+    method public String? component2();
+    method public String component3();
+    method public com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.OnChefBio copy(optional String webTitle, optional String? bylineImageUrl, optional String contributorId);
+    method @InaccessibleFromKotlin public String? getBylineImageUrl();
+    method @InaccessibleFromKotlin public String getContributorId();
+    method @InaccessibleFromKotlin public String getWebTitle();
+    property public String? bylineImageUrl;
+    property public String contributorId;
+    property public String webTitle;
+  }
+
+  public final class FaciaRecipeSearchQuery implements com.apollographql.apollo.api.Query<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Data> {
+    ctor public FaciaRecipeSearchQuery(String query, optional com.apollographql.apollo.api.Optional<? extends java.util.List<java.lang.String>?> celebrationId, optional com.apollographql.apollo.api.Optional<? extends java.util.List<java.lang.String>?> dietId, optional com.apollographql.apollo.api.Optional<? extends com.gu.recipe.backend.graphql.generated.type.SortableDates?> uprateByDate);
+    method public com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Data> adapter();
+    method public String component1();
+    method public com.apollographql.apollo.api.Optional<java.util.List<java.lang.String>?> component2();
+    method public com.apollographql.apollo.api.Optional<java.util.List<java.lang.String>?> component3();
+    method public com.apollographql.apollo.api.Optional<com.gu.recipe.backend.graphql.generated.type.SortableDates?> component4();
+    method public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery copy(optional String query, optional com.apollographql.apollo.api.Optional<? extends java.util.List<java.lang.String>?> celebrationId, optional com.apollographql.apollo.api.Optional<? extends java.util.List<java.lang.String>?> dietId, optional com.apollographql.apollo.api.Optional<? extends com.gu.recipe.backend.graphql.generated.type.SortableDates?> uprateByDate);
+    method public String document();
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.Optional<java.util.List<java.lang.String>?> getCelebrationId();
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.Optional<java.util.List<java.lang.String>?> getDietId();
+    method @InaccessibleFromKotlin public String getQuery();
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.Optional<com.gu.recipe.backend.graphql.generated.type.SortableDates?> getUprateByDate();
+    method public String id();
+    method public String name();
+    method public com.apollographql.apollo.api.CompiledField rootField();
+    method public void serializeVariables(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, boolean withDefaultValues);
+    property public com.apollographql.apollo.api.Optional<java.util.List<java.lang.String>?> celebrationId;
+    property public com.apollographql.apollo.api.Optional<java.util.List<java.lang.String>?> dietId;
+    property public String query;
+    property public com.apollographql.apollo.api.Optional<com.gu.recipe.backend.graphql.generated.type.SortableDates?> uprateByDate;
+    field public static final com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Companion Companion;
+    field public static final String OPERATION_ID = "afc70a5402408173b635a23d43e10b865ea71ab753677ba2b33919debdabcc08";
+    field public static final String OPERATION_NAME = "FaciaRecipeSearch";
+  }
+
+  public static final class FaciaRecipeSearchQuery.Companion implements com.apollographql.apollo.api.ExecutableDefinition<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Data> {
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Data> getADAPTER();
+    method @InaccessibleFromKotlin public String getOPERATION_DOCUMENT();
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledField getROOT_FIELD();
+    property public com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Data> ADAPTER;
+    property public String OPERATION_DOCUMENT;
+    property public static String OPERATION_ID;
+    property public static String OPERATION_NAME;
+    property public com.apollographql.apollo.api.CompiledField ROOT_FIELD;
+  }
+
+  public static final class FaciaRecipeSearchQuery.Contributor {
+    ctor public FaciaRecipeSearchQuery.Contributor(String webTitle);
+    method public String component1();
+    method public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Contributor copy(optional String webTitle);
+    method @InaccessibleFromKotlin public String getWebTitle();
+    property public String webTitle;
+  }
+
+  @com.apollographql.apollo.annotations.ApolloAdaptableWith(adapter=FaciaRecipeSearchQuery_ResponseAdapter.Data::class) public static final class FaciaRecipeSearchQuery.Data implements com.apollographql.apollo.api.Query.Data {
+    ctor public FaciaRecipeSearchQuery.Data(com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Search? search);
+    method public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Search? component1();
+    method public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Data copy(optional com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Search? search);
+    method @InaccessibleFromKotlin public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Search? getSearch();
+    property public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Search? search;
+  }
+
+  public static final class FaciaRecipeSearchQuery.FeaturedImage {
+    ctor public FaciaRecipeSearchQuery.FeaturedImage(String? templateUrl);
+    method public String? component1();
+    method public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.FeaturedImage copy(optional String? templateUrl);
+    method @InaccessibleFromKotlin public String? getTemplateUrl();
+    property public String? templateUrl;
+  }
+
+  public static final class FaciaRecipeSearchQuery.OnSearchHit {
+    ctor public FaciaRecipeSearchQuery.OnSearchHit(Double? score, com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Recipe recipe);
+    method public Double? component1();
+    method public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Recipe component2();
+    method public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.OnSearchHit copy(optional Double? score, optional com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Recipe recipe);
+    method @InaccessibleFromKotlin public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Recipe getRecipe();
+    method @InaccessibleFromKotlin public Double? getScore();
+    property public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Recipe recipe;
+    property public Double? score;
+  }
+
+  public static final class FaciaRecipeSearchQuery.Recipe {
+    ctor public FaciaRecipeSearchQuery.Recipe(String id, String? canonicalArticle, boolean appExclusiveBranding, String? title, Object? lastModifiedDate, Object? publishedDate, Object? firstPublishedDate, com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.FeaturedImage? featuredImage, java.util.List<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Contributor> contributors);
+    method public String component1();
+    method public String? component2();
+    method public boolean component3();
+    method public String? component4();
+    method public Object? component5();
+    method public Object? component6();
+    method public Object? component7();
+    method public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.FeaturedImage? component8();
+    method public java.util.List<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Contributor> component9();
+    method public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Recipe copy(optional String id, optional String? canonicalArticle, optional boolean appExclusiveBranding, optional String? title, optional Object? lastModifiedDate, optional Object? publishedDate, optional Object? firstPublishedDate, optional com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.FeaturedImage? featuredImage, optional java.util.List<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Contributor> contributors);
+    method @InaccessibleFromKotlin public boolean getAppExclusiveBranding();
+    method @InaccessibleFromKotlin public String? getCanonicalArticle();
+    method @InaccessibleFromKotlin public java.util.List<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Contributor> getContributors();
+    method @InaccessibleFromKotlin public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.FeaturedImage? getFeaturedImage();
+    method @InaccessibleFromKotlin public Object? getFirstPublishedDate();
+    method @InaccessibleFromKotlin public String getId();
+    method @InaccessibleFromKotlin public Object? getLastModifiedDate();
+    method @InaccessibleFromKotlin public Object? getPublishedDate();
+    method @InaccessibleFromKotlin public String? getTitle();
+    property public boolean appExclusiveBranding;
+    property public String? canonicalArticle;
+    property public java.util.List<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Contributor> contributors;
+    property public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.FeaturedImage? featuredImage;
+    property public Object? firstPublishedDate;
+    property public String id;
+    property public Object? lastModifiedDate;
+    property public Object? publishedDate;
+    property public String? title;
+  }
+
+  public static final class FaciaRecipeSearchQuery.Result {
+    ctor public FaciaRecipeSearchQuery.Result(String __typename, com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.OnSearchHit? onSearchHit);
+    method public String component1();
+    method public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.OnSearchHit? component2();
+    method public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Result copy(optional String __typename, optional com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.OnSearchHit? onSearchHit);
+    method @InaccessibleFromKotlin public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.OnSearchHit? getOnSearchHit();
+    method @InaccessibleFromKotlin public String get__typename();
+    property public String __typename;
+    property public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.OnSearchHit? onSearchHit;
+  }
+
+  public static final class FaciaRecipeSearchQuery.Search {
+    ctor public FaciaRecipeSearchQuery.Search(Double? maxScore, java.util.List<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Result> results);
+    method public Double? component1();
+    method public java.util.List<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Result> component2();
+    method public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Search copy(optional Double? maxScore, optional java.util.List<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Result> results);
+    method @InaccessibleFromKotlin public Double? getMaxScore();
+    method @InaccessibleFromKotlin public java.util.List<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Result> getResults();
+    property public Double? maxScore;
+    property public java.util.List<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Result> results;
+  }
+
   public final class GetDishOfTheDayRecipeQuery implements com.apollographql.apollo.api.Query<com.gu.recipe.backend.graphql.generated.GetDishOfTheDayRecipeQuery.Data> {
     ctor public GetDishOfTheDayRecipeQuery(com.gu.recipe.backend.graphql.generated.type.Regions region, com.gu.recipe.backend.graphql.generated.type.Editions edition, String alias);
     method public com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.GetDishOfTheDayRecipeQuery.Data> adapter();
@@ -654,6 +858,91 @@ package com.gu.recipe.backend.graphql.generated {
     property public String? qualifier;
   }
 
+  public final class GetRecipeBatchQuery implements com.apollographql.apollo.api.Query<com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Data> {
+    ctor public GetRecipeBatchQuery();
+    ctor public GetRecipeBatchQuery(optional com.apollographql.apollo.api.Optional<? extends java.util.List<java.lang.String>?> recipeIds);
+    method public com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Data> adapter();
+    method public com.apollographql.apollo.api.Optional<java.util.List<java.lang.String>?> component1();
+    method public com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery copy(optional com.apollographql.apollo.api.Optional<? extends java.util.List<java.lang.String>?> recipeIds);
+    method public String document();
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.Optional<java.util.List<java.lang.String>?> getRecipeIds();
+    method public String id();
+    method public String name();
+    method public com.apollographql.apollo.api.CompiledField rootField();
+    method public void serializeVariables(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, boolean withDefaultValues);
+    property public com.apollographql.apollo.api.Optional<java.util.List<java.lang.String>?> recipeIds;
+    field public static final com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Companion Companion;
+    field public static final String OPERATION_ID = "c4767aa095cfb47e707720db97bd7a0c61882ed87c864600e36bc8cb16628042";
+    field public static final String OPERATION_NAME = "GetRecipeBatch";
+  }
+
+  public static final class GetRecipeBatchQuery.Companion implements com.apollographql.apollo.api.ExecutableDefinition<com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Data> {
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Data> getADAPTER();
+    method @InaccessibleFromKotlin public String getOPERATION_DOCUMENT();
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledField getROOT_FIELD();
+    property public com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Data> ADAPTER;
+    property public String OPERATION_DOCUMENT;
+    property public static String OPERATION_ID;
+    property public static String OPERATION_NAME;
+    property public com.apollographql.apollo.api.CompiledField ROOT_FIELD;
+  }
+
+  public static final class GetRecipeBatchQuery.Contributor {
+    ctor public GetRecipeBatchQuery.Contributor(String webTitle);
+    method public String component1();
+    method public com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Contributor copy(optional String webTitle);
+    method @InaccessibleFromKotlin public String getWebTitle();
+    property public String webTitle;
+  }
+
+  @com.apollographql.apollo.annotations.ApolloAdaptableWith(adapter=GetRecipeBatchQuery_ResponseAdapter.Data::class) public static final class GetRecipeBatchQuery.Data implements com.apollographql.apollo.api.Query.Data {
+    ctor public GetRecipeBatchQuery.Data(java.util.List<com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Recipe> recipes);
+    method public java.util.List<com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Recipe> component1();
+    method public com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Data copy(optional java.util.List<com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Recipe> recipes);
+    method @InaccessibleFromKotlin public java.util.List<com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Recipe> getRecipes();
+    property public java.util.List<com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Recipe> recipes;
+  }
+
+  public static final class GetRecipeBatchQuery.FeaturedImage {
+    ctor public GetRecipeBatchQuery.FeaturedImage(String? templateUrl);
+    method public String? component1();
+    method public com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.FeaturedImage copy(optional String? templateUrl);
+    method @InaccessibleFromKotlin public String? getTemplateUrl();
+    property public String? templateUrl;
+  }
+
+  public static final class GetRecipeBatchQuery.Recipe {
+    ctor public GetRecipeBatchQuery.Recipe(String id, String? canonicalArticle, boolean appExclusiveBranding, String? title, Object? lastModifiedDate, Object? publishedDate, Object? firstPublishedDate, com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.FeaturedImage? featuredImage, java.util.List<com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Contributor> contributors);
+    method public String component1();
+    method public String? component2();
+    method public boolean component3();
+    method public String? component4();
+    method public Object? component5();
+    method public Object? component6();
+    method public Object? component7();
+    method public com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.FeaturedImage? component8();
+    method public java.util.List<com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Contributor> component9();
+    method public com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Recipe copy(optional String id, optional String? canonicalArticle, optional boolean appExclusiveBranding, optional String? title, optional Object? lastModifiedDate, optional Object? publishedDate, optional Object? firstPublishedDate, optional com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.FeaturedImage? featuredImage, optional java.util.List<com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Contributor> contributors);
+    method @InaccessibleFromKotlin public boolean getAppExclusiveBranding();
+    method @InaccessibleFromKotlin public String? getCanonicalArticle();
+    method @InaccessibleFromKotlin public java.util.List<com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Contributor> getContributors();
+    method @InaccessibleFromKotlin public com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.FeaturedImage? getFeaturedImage();
+    method @InaccessibleFromKotlin public Object? getFirstPublishedDate();
+    method @InaccessibleFromKotlin public String getId();
+    method @InaccessibleFromKotlin public Object? getLastModifiedDate();
+    method @InaccessibleFromKotlin public Object? getPublishedDate();
+    method @InaccessibleFromKotlin public String? getTitle();
+    property public boolean appExclusiveBranding;
+    property public String? canonicalArticle;
+    property public java.util.List<com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Contributor> contributors;
+    property public com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.FeaturedImage? featuredImage;
+    property public Object? firstPublishedDate;
+    property public String id;
+    property public Object? lastModifiedDate;
+    property public Object? publishedDate;
+    property public String? title;
+  }
+
 }
 
 package com.gu.recipe.backend.graphql.generated.adapter {
@@ -753,6 +1042,112 @@ package com.gu.recipe.backend.graphql.generated.adapter {
   public final class CuratedContainerByIdQuery_VariablesAdapter {
     method public void serializeVariables(com.apollographql.apollo.api.json.JsonWriter writer, com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery value, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, boolean withDefaultValues);
     field public static final com.gu.recipe.backend.graphql.generated.adapter.CuratedContainerByIdQuery_VariablesAdapter INSTANCE;
+  }
+
+  public final class FaciaChefSearchQuery_ResponseAdapter {
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.FaciaChefSearchQuery_ResponseAdapter INSTANCE;
+  }
+
+  public static final class FaciaChefSearchQuery_ResponseAdapter.Chef implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.Chef> {
+    method public com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.Chef fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.Chef value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.FaciaChefSearchQuery_ResponseAdapter.Chef INSTANCE;
+  }
+
+  public static final class FaciaChefSearchQuery_ResponseAdapter.Data implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.Data> {
+    method public com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.Data fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.Data value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.FaciaChefSearchQuery_ResponseAdapter.Data INSTANCE;
+  }
+
+  public static final class FaciaChefSearchQuery_ResponseAdapter.OnByline implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.OnByline> {
+    method public com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.OnByline fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.OnByline value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.FaciaChefSearchQuery_ResponseAdapter.OnByline INSTANCE;
+  }
+
+  public static final class FaciaChefSearchQuery_ResponseAdapter.OnChefBio implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.OnChefBio> {
+    method public com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.OnChefBio fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.OnChefBio value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.FaciaChefSearchQuery_ResponseAdapter.OnChefBio INSTANCE;
+  }
+
+  public final class FaciaChefSearchQuery_VariablesAdapter {
+    method public void serializeVariables(com.apollographql.apollo.api.json.JsonWriter writer, com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery value, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, boolean withDefaultValues);
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.FaciaChefSearchQuery_VariablesAdapter INSTANCE;
+  }
+
+  public final class FaciaRecipeSearchQuery_ResponseAdapter {
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.FaciaRecipeSearchQuery_ResponseAdapter INSTANCE;
+  }
+
+  public static final class FaciaRecipeSearchQuery_ResponseAdapter.Contributor implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Contributor> {
+    method public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Contributor fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Contributor value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.FaciaRecipeSearchQuery_ResponseAdapter.Contributor INSTANCE;
+  }
+
+  public static final class FaciaRecipeSearchQuery_ResponseAdapter.Data implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Data> {
+    method public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Data fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Data value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.FaciaRecipeSearchQuery_ResponseAdapter.Data INSTANCE;
+  }
+
+  public static final class FaciaRecipeSearchQuery_ResponseAdapter.FeaturedImage implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.FeaturedImage> {
+    method public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.FeaturedImage fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.FeaturedImage value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.FaciaRecipeSearchQuery_ResponseAdapter.FeaturedImage INSTANCE;
+  }
+
+  public static final class FaciaRecipeSearchQuery_ResponseAdapter.OnSearchHit implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.OnSearchHit> {
+    method public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.OnSearchHit fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.OnSearchHit value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.FaciaRecipeSearchQuery_ResponseAdapter.OnSearchHit INSTANCE;
+  }
+
+  public static final class FaciaRecipeSearchQuery_ResponseAdapter.Recipe implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Recipe> {
+    method public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Recipe fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Recipe value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.FaciaRecipeSearchQuery_ResponseAdapter.Recipe INSTANCE;
+  }
+
+  public static final class FaciaRecipeSearchQuery_ResponseAdapter.Result implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Result> {
+    method public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Result fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Result value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.FaciaRecipeSearchQuery_ResponseAdapter.Result INSTANCE;
+  }
+
+  public static final class FaciaRecipeSearchQuery_ResponseAdapter.Search implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Search> {
+    method public com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Search fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Search value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.FaciaRecipeSearchQuery_ResponseAdapter.Search INSTANCE;
+  }
+
+  public final class FaciaRecipeSearchQuery_VariablesAdapter {
+    method public void serializeVariables(com.apollographql.apollo.api.json.JsonWriter writer, com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery value, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, boolean withDefaultValues);
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.FaciaRecipeSearchQuery_VariablesAdapter INSTANCE;
   }
 
   public final class GetDishOfTheDayRecipeQuery_ResponseAdapter {
@@ -981,6 +1376,47 @@ package com.gu.recipe.backend.graphql.generated.adapter {
     field public static final com.gu.recipe.backend.graphql.generated.adapter.GetFrontsByRegionQuery_VariablesAdapter INSTANCE;
   }
 
+  public final class GetRecipeBatchQuery_ResponseAdapter {
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.GetRecipeBatchQuery_ResponseAdapter INSTANCE;
+  }
+
+  public static final class GetRecipeBatchQuery_ResponseAdapter.Contributor implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Contributor> {
+    method public com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Contributor fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Contributor value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.GetRecipeBatchQuery_ResponseAdapter.Contributor INSTANCE;
+  }
+
+  public static final class GetRecipeBatchQuery_ResponseAdapter.Data implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Data> {
+    method public com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Data fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Data value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.GetRecipeBatchQuery_ResponseAdapter.Data INSTANCE;
+  }
+
+  public static final class GetRecipeBatchQuery_ResponseAdapter.FeaturedImage implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.FeaturedImage> {
+    method public com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.FeaturedImage fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.FeaturedImage value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.GetRecipeBatchQuery_ResponseAdapter.FeaturedImage INSTANCE;
+  }
+
+  public static final class GetRecipeBatchQuery_ResponseAdapter.Recipe implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Recipe> {
+    method public com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Recipe fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method @InaccessibleFromKotlin public java.util.List<java.lang.String> getRESPONSE_NAMES();
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Recipe value);
+    property public java.util.List<java.lang.String> RESPONSE_NAMES;
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.GetRecipeBatchQuery_ResponseAdapter.Recipe INSTANCE;
+  }
+
+  public final class GetRecipeBatchQuery_VariablesAdapter {
+    method public void serializeVariables(com.apollographql.apollo.api.json.JsonWriter writer, com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery value, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, boolean withDefaultValues);
+    field public static final com.gu.recipe.backend.graphql.generated.adapter.GetRecipeBatchQuery_VariablesAdapter INSTANCE;
+  }
+
 }
 
 package com.gu.recipe.backend.graphql.generated.selections {
@@ -989,6 +1425,18 @@ package com.gu.recipe.backend.graphql.generated.selections {
     method @InaccessibleFromKotlin public java.util.List<com.apollographql.apollo.api.CompiledSelection> get__root();
     property public java.util.List<com.apollographql.apollo.api.CompiledSelection> __root;
     field public static final com.gu.recipe.backend.graphql.generated.selections.CuratedContainerByIdQuerySelections INSTANCE;
+  }
+
+  public final class FaciaChefSearchQuerySelections {
+    method @InaccessibleFromKotlin public java.util.List<com.apollographql.apollo.api.CompiledSelection> get__root();
+    property public java.util.List<com.apollographql.apollo.api.CompiledSelection> __root;
+    field public static final com.gu.recipe.backend.graphql.generated.selections.FaciaChefSearchQuerySelections INSTANCE;
+  }
+
+  public final class FaciaRecipeSearchQuerySelections {
+    method @InaccessibleFromKotlin public java.util.List<com.apollographql.apollo.api.CompiledSelection> get__root();
+    property public java.util.List<com.apollographql.apollo.api.CompiledSelection> __root;
+    field public static final com.gu.recipe.backend.graphql.generated.selections.FaciaRecipeSearchQuerySelections INSTANCE;
   }
 
   public final class GetDishOfTheDayRecipeQuerySelections {
@@ -1003,9 +1451,28 @@ package com.gu.recipe.backend.graphql.generated.selections {
     field public static final com.gu.recipe.backend.graphql.generated.selections.GetFrontsByRegionQuerySelections INSTANCE;
   }
 
+  public final class GetRecipeBatchQuerySelections {
+    method @InaccessibleFromKotlin public java.util.List<com.apollographql.apollo.api.CompiledSelection> get__root();
+    property public java.util.List<com.apollographql.apollo.api.CompiledSelection> __root;
+    field public static final com.gu.recipe.backend.graphql.generated.selections.GetRecipeBatchQuerySelections INSTANCE;
+  }
+
 }
 
 package com.gu.recipe.backend.graphql.generated.type {
+
+  public final class Byline {
+    ctor public Byline();
+    field public static final com.gu.recipe.backend.graphql.generated.type.Byline.Companion Companion;
+  }
+
+  public static final class Byline.Companion {
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.ObjectType getType();
+    property public com.apollographql.apollo.api.ObjectType type;
+  }
+
+  public static interface Byline.Data extends com.apollographql.apollo.api.Fragment.Data {
+  }
 
   public final class Chef {
     ctor public Chef();
@@ -1046,6 +1513,32 @@ package com.gu.recipe.backend.graphql.generated.type {
   }
 
   public static interface ChefData.Data extends com.apollographql.apollo.api.Fragment.Data {
+  }
+
+  public final class Contributor {
+    ctor public Contributor();
+    field public static final com.gu.recipe.backend.graphql.generated.type.Contributor.Companion Companion;
+  }
+
+  public static final class Contributor.Companion {
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.UnionType getType();
+    property public com.apollographql.apollo.api.UnionType type;
+  }
+
+  public static interface Contributor.Data extends com.apollographql.apollo.api.Fragment.Data {
+  }
+
+  public final class CustomMessageInsert {
+    ctor public CustomMessageInsert();
+    field public static final com.gu.recipe.backend.graphql.generated.type.CustomMessageInsert.Companion Companion;
+  }
+
+  public static final class CustomMessageInsert.Companion {
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.ObjectType getType();
+    property public com.apollographql.apollo.api.ObjectType type;
+  }
+
+  public static interface CustomMessageInsert.Data extends com.apollographql.apollo.api.Fragment.Data {
   }
 
   public enum Editions {
@@ -1132,6 +1625,19 @@ package com.gu.recipe.backend.graphql.generated.type {
   public static interface Image.Data extends com.apollographql.apollo.api.Fragment.Data {
   }
 
+  public final class Insert {
+    ctor public Insert();
+    field public static final com.gu.recipe.backend.graphql.generated.type.Insert.Companion Companion;
+  }
+
+  public static final class Insert.Companion {
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.ObjectType getType();
+    property public com.apollographql.apollo.api.ObjectType type;
+  }
+
+  public static interface Insert.Data extends com.apollographql.apollo.api.Fragment.Data {
+  }
+
   public final class Item {
     ctor public Item();
     field public static final com.gu.recipe.backend.graphql.generated.type.Item.Companion Companion;
@@ -1143,6 +1649,19 @@ package com.gu.recipe.backend.graphql.generated.type {
   }
 
   public static interface Item.Data extends com.apollographql.apollo.api.Fragment.Data {
+  }
+
+  public final class KeywordSuggestionsInsert {
+    ctor public KeywordSuggestionsInsert();
+    field public static final com.gu.recipe.backend.graphql.generated.type.KeywordSuggestionsInsert.Companion Companion;
+  }
+
+  public static final class KeywordSuggestionsInsert.Companion {
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.ObjectType getType();
+    property public com.apollographql.apollo.api.ObjectType type;
+  }
+
+  public static interface KeywordSuggestionsInsert.Data extends com.apollographql.apollo.api.Fragment.Data {
   }
 
   public final class LocalDateTime {
@@ -1175,18 +1694,36 @@ package com.gu.recipe.backend.graphql.generated.type {
 
   public static final class Query.Companion {
     method @InaccessibleFromKotlin public com.apollographql.apollo.api.ObjectType getType();
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledArgumentDefinition get__chefs_ids();
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledArgumentDefinition get__chefs_limit();
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledArgumentDefinition get__chefs_q();
     method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledArgumentDefinition get__curatedContainerByAlias_alias();
     method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledArgumentDefinition get__curatedContainerByAlias_edition();
     method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledArgumentDefinition get__curatedContainerByAlias_region();
     method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledArgumentDefinition get__curatedContainerById_id();
     method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledArgumentDefinition get__curation_edition();
     method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledArgumentDefinition get__curation_region();
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledArgumentDefinition get__recipes_ids();
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledArgumentDefinition get__recipes_limit();
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledArgumentDefinition get__search_celebrationFilter();
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledArgumentDefinition get__search_dietFilter();
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledArgumentDefinition get__search_q();
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.CompiledArgumentDefinition get__search_uprateByDate();
+    property public com.apollographql.apollo.api.CompiledArgumentDefinition __chefs_ids;
+    property public com.apollographql.apollo.api.CompiledArgumentDefinition __chefs_limit;
+    property public com.apollographql.apollo.api.CompiledArgumentDefinition __chefs_q;
     property public com.apollographql.apollo.api.CompiledArgumentDefinition __curatedContainerByAlias_alias;
     property public com.apollographql.apollo.api.CompiledArgumentDefinition __curatedContainerByAlias_edition;
     property public com.apollographql.apollo.api.CompiledArgumentDefinition __curatedContainerByAlias_region;
     property public com.apollographql.apollo.api.CompiledArgumentDefinition __curatedContainerById_id;
     property public com.apollographql.apollo.api.CompiledArgumentDefinition __curation_edition;
     property public com.apollographql.apollo.api.CompiledArgumentDefinition __curation_region;
+    property public com.apollographql.apollo.api.CompiledArgumentDefinition __recipes_ids;
+    property public com.apollographql.apollo.api.CompiledArgumentDefinition __recipes_limit;
+    property public com.apollographql.apollo.api.CompiledArgumentDefinition __search_celebrationFilter;
+    property public com.apollographql.apollo.api.CompiledArgumentDefinition __search_dietFilter;
+    property public com.apollographql.apollo.api.CompiledArgumentDefinition __search_q;
+    property public com.apollographql.apollo.api.CompiledArgumentDefinition __search_uprateByDate;
     property public com.apollographql.apollo.api.ObjectType type;
   }
 
@@ -1249,6 +1786,64 @@ package com.gu.recipe.backend.graphql.generated.type {
   }
 
   public static interface RenderedTimings.Data extends com.apollographql.apollo.api.Fragment.Data {
+  }
+
+  public final class SearchHit {
+    ctor public SearchHit();
+    field public static final com.gu.recipe.backend.graphql.generated.type.SearchHit.Companion Companion;
+  }
+
+  public static final class SearchHit.Companion {
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.ObjectType getType();
+    property public com.apollographql.apollo.api.ObjectType type;
+  }
+
+  public static interface SearchHit.Data extends com.apollographql.apollo.api.Fragment.Data {
+  }
+
+  public final class SearchResponse {
+    ctor public SearchResponse();
+    field public static final com.gu.recipe.backend.graphql.generated.type.SearchResponse.Companion Companion;
+  }
+
+  public static final class SearchResponse.Companion {
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.ObjectType getType();
+    property public com.apollographql.apollo.api.ObjectType type;
+  }
+
+  public static interface SearchResponse.Data extends com.apollographql.apollo.api.Fragment.Data {
+  }
+
+  public final class SearchResult {
+    ctor public SearchResult();
+    field public static final com.gu.recipe.backend.graphql.generated.type.SearchResult.Companion Companion;
+  }
+
+  public static final class SearchResult.Companion {
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.UnionType getType();
+    property public com.apollographql.apollo.api.UnionType type;
+  }
+
+  public static interface SearchResult.Data extends com.apollographql.apollo.api.Fragment.Data {
+  }
+
+  public enum SortableDates {
+    method @InaccessibleFromKotlin public String getRawValue();
+    property public String rawValue;
+    enum_constant public static final com.gu.recipe.backend.graphql.generated.type.SortableDates UNKNOWN__;
+    enum_constant public static final com.gu.recipe.backend.graphql.generated.type.SortableDates firstPublishedDate;
+    enum_constant public static final com.gu.recipe.backend.graphql.generated.type.SortableDates lastModifiedDate;
+    enum_constant public static final com.gu.recipe.backend.graphql.generated.type.SortableDates publishedDate;
+    field public static final com.gu.recipe.backend.graphql.generated.type.SortableDates.Companion Companion;
+  }
+
+  public static final class SortableDates.Companion {
+    method @InaccessibleFromKotlin public java.util.List<com.gu.recipe.backend.graphql.generated.type.SortableDates> getKnownEntries();
+    method @InaccessibleFromKotlin public com.apollographql.apollo.api.EnumType getType();
+    method @Deprecated public com.gu.recipe.backend.graphql.generated.type.SortableDates[] knownValues();
+    method public com.gu.recipe.backend.graphql.generated.type.SortableDates safeValueOf(String rawValue);
+    property public java.util.List<com.gu.recipe.backend.graphql.generated.type.SortableDates> knownEntries;
+    property public com.apollographql.apollo.api.EnumType type;
   }
 
   public final class SubCollection {
@@ -1316,6 +1911,12 @@ package com.gu.recipe.backend.graphql.generated.type.adapter {
     field public static final com.gu.recipe.backend.graphql.generated.type.adapter.Regions_ResponseAdapter INSTANCE;
   }
 
+  public final class SortableDates_ResponseAdapter implements com.apollographql.apollo.api.Adapter<com.gu.recipe.backend.graphql.generated.type.SortableDates> {
+    method public com.gu.recipe.backend.graphql.generated.type.SortableDates fromJson(com.apollographql.apollo.api.json.JsonReader reader, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters);
+    method public void toJson(com.apollographql.apollo.api.json.JsonWriter writer, com.apollographql.apollo.api.CustomScalarAdapters customScalarAdapters, com.gu.recipe.backend.graphql.generated.type.SortableDates value);
+    field public static final com.gu.recipe.backend.graphql.generated.type.adapter.SortableDates_ResponseAdapter INSTANCE;
+  }
+
 }
 
 package com.gu.recipe.backend.graphql.provider {
@@ -1341,15 +1942,21 @@ package com.gu.recipe.backend.graphql.repository {
 
   public final class ApolloRecipeGraphQlDataSource implements com.gu.recipe.backend.graphql.repository.RecipeGraphQlDataSource {
     ctor public ApolloRecipeGraphQlDataSource(com.gu.recipe.backend.graphql.client.FeastGraphQlClient feastGraphQlClient);
+    method public suspend Object? faciaChefSearch(int limit, String? q, String[]? ids, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.GraphQlResult<? extends java.util.List<com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.Chef>>>);
+    method public suspend Object? faciaRecipeSearch(String query, String? celebrationId, String? dietId, com.gu.recipe.backend.graphql.generated.type.SortableDates? uprateByDate, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.GraphQlResult<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Search?>>);
     method public suspend Object? getCuratedCollection(String collectionId, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.GraphQlResult<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.CuratedContainerById?>>);
     method public suspend Object? getDishOfTheDayContainer(com.gu.recipe.backend.graphql.generated.type.Regions region, com.gu.recipe.backend.graphql.generated.type.Editions edition, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.GraphQlResult<com.gu.recipe.backend.graphql.generated.GetDishOfTheDayRecipeQuery.Container?>>);
     method public suspend Object? getFrontByRegion(com.gu.recipe.backend.graphql.generated.type.Regions region, com.gu.recipe.backend.graphql.generated.type.Editions edition, int recipesLimit, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.GraphQlResult<? extends java.util.List<com.gu.recipe.backend.graphql.generated.GetFrontsByRegionQuery.Front>>>);
+    method public suspend Object? getRecipeBatch(java.util.List<java.lang.String>? recipeIds, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.GraphQlResult<? extends java.util.List<com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Recipe>>>);
   }
 
   public interface RecipeGraphQlDataSource {
+    method public suspend Object? faciaChefSearch(int limit, String? q, String[]? ids, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.GraphQlResult<? extends java.util.List<com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.Chef>>>);
+    method public suspend Object? faciaRecipeSearch(String query, String? celebrationId, String? dietId, com.gu.recipe.backend.graphql.generated.type.SortableDates? uprateByDate, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.GraphQlResult<com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery.Search?>>);
     method public suspend Object? getCuratedCollection(String collectionId, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.GraphQlResult<com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery.CuratedContainerById?>>);
     method public suspend Object? getDishOfTheDayContainer(com.gu.recipe.backend.graphql.generated.type.Regions region, com.gu.recipe.backend.graphql.generated.type.Editions edition, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.GraphQlResult<com.gu.recipe.backend.graphql.generated.GetDishOfTheDayRecipeQuery.Container?>>);
     method public suspend Object? getFrontByRegion(com.gu.recipe.backend.graphql.generated.type.Regions region, com.gu.recipe.backend.graphql.generated.type.Editions edition, int recipesLimit, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.GraphQlResult<? extends java.util.List<com.gu.recipe.backend.graphql.generated.GetFrontsByRegionQuery.Front>>>);
+    method public suspend Object? getRecipeBatch(java.util.List<java.lang.String>? recipeIds, kotlin.coroutines.Continuation<? super com.gu.recipe.backend.graphql.GraphQlResult<? extends java.util.List<com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery.Recipe>>>);
   }
 
 }
