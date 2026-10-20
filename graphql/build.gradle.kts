@@ -34,6 +34,14 @@ val graphQlIntrospectionHeaders = providers
     .orElse(providers.environmentVariable("FEAST_GRAPHQL_INTROSPECTION_HEADERS"))
 
 kotlin {
+    js {
+        nodejs()
+        browser()
+        binaries.library()
+        generateTypeScriptDefinitions()
+        useEsModules()
+    }
+
     androidTarget {
         publishLibraryVariants("release")
         @OptIn(ExperimentalKotlinGradlePluginApi::class)

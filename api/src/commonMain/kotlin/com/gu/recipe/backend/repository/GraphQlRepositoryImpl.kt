@@ -3,8 +3,12 @@ package com.gu.recipe.backend.repository
 import com.gu.recipe.backend.exceptions.toRepositoryException
 import com.gu.recipe.backend.graphql.GraphQlResult
 import com.gu.recipe.backend.graphql.generated.CuratedContainerByIdQuery
+import com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery
 import com.gu.recipe.backend.graphql.generated.GetDishOfTheDayRecipeQuery
 import com.gu.recipe.backend.graphql.generated.GetFrontsByRegionQuery
+import com.gu.recipe.backend.graphql.generated.GetRecipeBatchQuery
+import com.gu.recipe.backend.graphql.generated.FaciaRecipeSearchQuery
+import com.gu.recipe.backend.graphql.generated.type.SortableDates
 import com.gu.recipe.backend.graphql.generated.type.Editions
 import com.gu.recipe.backend.graphql.generated.type.Regions
 import com.gu.recipe.backend.graphql.repository.RecipeGraphQlDataSource
@@ -35,6 +39,28 @@ internal class GraphQlRepositoryImpl(
 
         return dataSource.getCuratedCollection(collectionId).getOrThrow()
     }
+    
+    override suspend fun faciaRecipeSearch(
+        query: String,
+        celebrationId: String?,
+        dietId: String?,
+        uprateByDate: String?,
+    ): FaciaRecipeSearchQuery.Search? {
+        val actualDateField = uprateByDate?.let { SortableDates.valueOf(it) }
+        return dataSource.faciaRecipeSearch(query, celebrationId, dietId, actualDateField).getOrThrow()
+    }
+
+    override suspend fun faciaChefSearch(
+        limit: Int,
+        q: String?,
+        ids: Array<String>?
+    ): List<FaciaChefSearchQuery.Chef> =
+        dataSource.faciaChefSearch(limit, q, ids).getOrThrow()
+
+    override suspend fun getRecipeBatch(
+        recipeIds: List<String>?,
+    ): List<GetRecipeBatchQuery.Recipe> =
+        dataSource.getRecipeBatch(recipeIds).getOrThrow()
 }
 
 private fun <T> GraphQlResult<T>.getOrThrow(): T = when (this) {
