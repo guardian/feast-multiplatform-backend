@@ -36,10 +36,18 @@ object FeastGraphQLiOS {
     fun graphQLRepository(): GraphQLRepository = KoinPlatform.getKoin().get()
 
     /**
+     * Updates the authorization token used by configured GraphQL HTTP interceptors.
+     *
+     * Requires [start] to be called first; otherwise Koin is not initialised.
+     */
+    fun updateAuthToken(authToken: String?) {
+        KoinPlatform.getKoin().get<FeastApiClient>().updateAuthToken(authToken)
+    }
+
+    /**
      * Stops the active Koin instance if one is running.
      */
     fun stop() {
         KoinPlatform.getKoinOrNull()?.let { stopKoin() }
     }
 }
-

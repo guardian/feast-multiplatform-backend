@@ -1,5 +1,6 @@
 package com.gu.recipe.backend.di
 
+import com.gu.recipe.backend.FeastApiClient
 import com.gu.recipe.backend.repository.GraphQlRepositoryImpl
 import com.gu.recipe.backend.repository.GraphQLRepository
 import com.gu.recipe.backend.graphql.config.GraphQlConfig
@@ -21,5 +22,6 @@ fun feastApiModule(
     ioDispatcher: CoroutineDispatcher = Dispatchers.Default,
 ): Module = module {
     includes(graphQlModule(GraphQlConfig(baseUrl = baseUrl), ioDispatcher))
+    single { FeastApiClient(get()) }
     single<GraphQLRepository> { GraphQlRepositoryImpl(get()) }
 }
