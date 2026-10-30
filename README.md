@@ -88,6 +88,14 @@ There are no separately maintained response models or additional network clients
 Code-generation dependencies are pinned in `api/typescript/package-lock.json` and installed with `npm ci`.
 Changes to the schema or operations trigger regeneration during the Gradle package build.
 
+Kotlin/JS build tools use `kotlin-js-store/yarn.lock`. The root Gradle build resolves
+`serialize-javascript` to 7.1.4 and `ws` to 8.22.0. These overrides are needed because
+Mocha 12 (which updates the serializer) is incompatible with Kotlin's test reporter,
+and upstream KMP dependencies still request an affected exact `ws` version.
+After changing these settings, regenerate the lock with `./gradlew kotlinUpgradeYarnLock`.
+The `braces` advisory CVE-2026-93687 was withdrawn on 23 October 2026 as not
+practically exploitable; it has no patched release and does not require an override.
+
 Install the archive in the consuming TypeScript project:
 
 ```sh
