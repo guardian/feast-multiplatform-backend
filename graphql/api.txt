@@ -286,7 +286,7 @@ package com.gu.recipe.backend.graphql.generated {
     property public int limit;
     property public com.apollographql.apollo.api.Optional<java.lang.String?> q;
     field public static final com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.Companion Companion;
-    field public static final String OPERATION_ID = "923961e0b3f6d16b8a6232b570e1f7deb9b1f3f250ecef7a7698daa9ead43694";
+    field public static final String OPERATION_ID = "c7783002083936484fbc668f0a6d5a1dc7dba58138cd121b128838fd8e1ef5d0";
     field public static final String OPERATION_NAME = "FaciaChefSearch";
   }
 
@@ -332,14 +332,17 @@ package com.gu.recipe.backend.graphql.generated {
   }
 
   public static final class FaciaChefSearchQuery.OnChefBio {
-    ctor public FaciaChefSearchQuery.OnChefBio(String webTitle, String? bylineImageUrl, String contributorId);
+    ctor public FaciaChefSearchQuery.OnChefBio(String webTitle, String? bylineImageUrl, String contributorId, String? bio);
     method public String component1();
     method public String? component2();
     method public String component3();
-    method public com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.OnChefBio copy(optional String webTitle, optional String? bylineImageUrl, optional String contributorId);
+    method public String? component4();
+    method public com.gu.recipe.backend.graphql.generated.FaciaChefSearchQuery.OnChefBio copy(optional String webTitle, optional String? bylineImageUrl, optional String contributorId, optional String? bio);
+    method @InaccessibleFromKotlin public String? getBio();
     method @InaccessibleFromKotlin public String? getBylineImageUrl();
     method @InaccessibleFromKotlin public String getContributorId();
     method @InaccessibleFromKotlin public String getWebTitle();
+    property public String? bio;
     property public String? bylineImageUrl;
     property public String contributorId;
     property public String webTitle;
