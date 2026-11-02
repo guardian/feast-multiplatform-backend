@@ -4,6 +4,7 @@ query FaciaChefSearch($limit: Int!, $q: String, $idList: [String!]) {
             webTitle
             bylineImageUrl
             contributorId
+            bio
         }
         ... on byline {
             webTitle
