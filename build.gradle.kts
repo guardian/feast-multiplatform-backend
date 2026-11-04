@@ -1,8 +1,20 @@
+import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlugin
+import org.jetbrains.kotlin.gradle.targets.js.yarn.YarnRootExtension
+
 plugins {
     alias(libs.plugins.androidLibrary) apply false
     alias(libs.plugins.kotlinMultiplatform) apply  false
     alias(libs.plugins.vanniktech.mavenPublish) apply false
     alias(libs.plugins.apollo) apply false
+}
+
+plugins.withType<YarnPlugin> {
+    extensions.configure<YarnRootExtension> {
+        // Mocha 12 updates the serializer but is incompatible with Kotlin's test reporter.
+        resolution("serialize-javascript", "7.1.4")
+        // KMP runtime dependencies still request an affected, exact ws version.
+        resolution("ws", "8.22.0")
+    }
 }
 
 
@@ -26,4 +38,3 @@ allprojects {
         }
     }
 }
-
