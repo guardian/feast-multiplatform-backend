@@ -13,36 +13,36 @@ type Chef {
 }
 
 type ChefBio {
-  webUrl: String!
-
-  apiUrl: String
-
-  bylineLargeImageUrl: String
-
   bio: String
-
-  contributorId: String!
 
   bylineImageUrl: String
 
+  apiUrl: String
+
+  contributorId: String!
+
+  bylineLargeImageUrl: String
+
   webTitle: String!
+
+  webUrl: String!
 
   """
   returns all recipes
   """
-  recipes(limit: Int!, offset: Int, sortBy: recipeSortFields, sortDirection: recipeSortDirections, techniques: [String!], utensilsAppliances: [String!], bylines: [String!], diets: [String!], cuisines: [String!], celebrations: [String!], mealTypes: [String!]): [Recipe!]!
+  recipes(limit: Int!, offset: Int, sortBy: recipeSortFields, sortDirection: recipeSortDirections, techniques: [String!], utensilsAppliances: [String!], "Filter results by name beginning with phrase (searches first and last name)" startsWith: String, bylines: [String!], diets: [String!], cuisines: [String!], celebrations: [String!], mealTypes: [String!]): [Recipe!]!
 }
 
 type ChefData {
+  bio: String
+
   backgroundHex: String
 
-  id: String!
+  image: String
 
   foregroundHex: String
 
-  bio: String
-
-  image: String
+  id: String!
 
   """
   Background information about this chef
@@ -75,25 +75,25 @@ enum ContentTypes {
 }
 
 type CustomMessage {
-  ctaLabel: String
-
-  image: String!
-
   foregroundColor: AppColour!
 
-  isIcon: Boolean!
-
-  title: String!
+  supporting: String
 
   size: PromptSize!
 
-  isDismissable: Boolean!
-
   showChevron: Boolean!
+
+  isIcon: Boolean!
+
+  image: String!
+
+  ctaLabel: String
 
   backgroundColor: AppColour!
 
-  supporting: String
+  title: String!
+
+  isDismissable: Boolean!
 }
 
 type CustomMessageInsert {
@@ -103,23 +103,23 @@ type CustomMessageInsert {
 type FeastAppContainer {
   hideFromFront: Boolean
 
-  id: uuid!
+  darkPalette: Palette
+
+  identityId: String
 
   body: String
 
   image: String
 
-  excludedRegions: [String!]
-
   lightPalette: Palette
-
-  targetedRegions: [String!]
 
   title: String!
 
-  identityId: String
+  excludedRegions: [String!]
 
-  darkPalette: Palette
+  targetedRegions: [String!]
+
+  id: uuid!
 
   items: [item!]!
 }
@@ -176,15 +176,15 @@ type Palette {
 type PrivateNote {
   recipeId: String!
 
-  pk: Int!
-
-  noteText: String
-
-  owner: Int!
-
   firstPersistedAt: ZonedDateTime!
 
   collectionId: String
+
+  owner: Int!
+
+  pk: Int!
+
+  noteText: String
 
   lastModified: ZonedDateTime!
 }
@@ -216,7 +216,7 @@ type Query {
   """
   returns all recipes
   """
-  recipes(limit: Int!, offset: Int, sortBy: recipeSortFields, sortDirection: recipeSortDirections, techniques: [String!], utensilsAppliances: [String!], contributors: [String!], bylines: [String!], diets: [String!], cuisines: [String!], celebrations: [String!], mealTypes: [String!], ids: [String!]): [Recipe!]!
+  recipes(limit: Int!, offset: Int, sortBy: recipeSortFields, sortDirection: recipeSortDirections, techniques: [String!], utensilsAppliances: [String!], "Filter results by name beginning with phrase (searches first and last name)" startsWith: String, contributors: [String!], bylines: [String!], diets: [String!], cuisines: [String!], celebrations: [String!], mealTypes: [String!], ids: [String!]): [Recipe!]!
 
   """
   returns curation ('fronts') information
@@ -236,7 +236,7 @@ type Query {
   """
   returns information about our chefs
   """
-  chefs(limit: Int!, offset: Int, q: String, ids: [String!]): [contributor!]!
+  chefs(limit: Int!, offset: Int, q: String, ids: [String!], "Filter results by name beginning with phrase (searches first and last name)" startsWith: String): [contributor!]!
 
   """
   information about a specific chef
@@ -255,33 +255,33 @@ A field containing a raw JSON object
 scalar RawJson
 
 type Recipe {
-  difficultyLevel: String
+  appExclusiveBranding: Boolean!
 
-  id: String!
+  firstPublishedDate: LocalDateTime
 
   publishedDate: LocalDateTime
 
-  appExclusiveBranding: Boolean!
+  canonicalArticle: String
+
+  difficultyLevel: String
+
+  title: String
+
+  bookCredit: String
+
+  originalMeasuringSystem: OriginalMeasuringSystem!
+
+  checksumV2: String
 
   isAppReady: Boolean
+
+  lastModifiedDate: LocalDateTime
 
   description: String
 
   composerId: String
 
-  checksumV2: String
-
-  firstPublishedDate: LocalDateTime
-
-  canonicalArticle: String
-
-  title: String
-
-  originalMeasuringSystem: OriginalMeasuringSystem!
-
-  lastModifiedDate: LocalDateTime
-
-  bookCredit: String
+  id: String!
 
   ingredients: [ingredientSection!]!
 
@@ -372,7 +372,7 @@ type RecipeCelebrationFilter {
   """
   returns all recipes
   """
-  recipes(limit: Int!, offset: Int, sortBy: recipeSortFields, sortDirection: recipeSortDirections, techniques: [String!], utensilsAppliances: [String!], contributors: [String!], bylines: [String!], diets: [String!], cuisines: [String!], mealTypes: [String!]): [Recipe!]!
+  recipes(limit: Int!, offset: Int, sortBy: recipeSortFields, sortDirection: recipeSortDirections, techniques: [String!], utensilsAppliances: [String!], "Filter results by name beginning with phrase (searches first and last name)" startsWith: String, contributors: [String!], bylines: [String!], diets: [String!], cuisines: [String!], mealTypes: [String!]): [Recipe!]!
 }
 
 """
@@ -387,7 +387,7 @@ type RecipeCuisineFilter {
   """
   returns all recipes
   """
-  recipes(limit: Int!, offset: Int, sortBy: recipeSortFields, sortDirection: recipeSortDirections, techniques: [String!], utensilsAppliances: [String!], contributors: [String!], bylines: [String!], diets: [String!], celebrations: [String!], mealTypes: [String!]): [Recipe!]!
+  recipes(limit: Int!, offset: Int, sortBy: recipeSortFields, sortDirection: recipeSortDirections, techniques: [String!], utensilsAppliances: [String!], "Filter results by name beginning with phrase (searches first and last name)" startsWith: String, contributors: [String!], bylines: [String!], diets: [String!], celebrations: [String!], mealTypes: [String!]): [Recipe!]!
 }
 
 """
@@ -402,7 +402,7 @@ type RecipeDietFilter {
   """
   returns all recipes
   """
-  recipes(limit: Int!, offset: Int, sortBy: recipeSortFields, sortDirection: recipeSortDirections, techniques: [String!], utensilsAppliances: [String!], contributors: [String!], bylines: [String!], cuisines: [String!], celebrations: [String!], mealTypes: [String!]): [Recipe!]!
+  recipes(limit: Int!, offset: Int, sortBy: recipeSortFields, sortDirection: recipeSortDirections, techniques: [String!], utensilsAppliances: [String!], "Filter results by name beginning with phrase (searches first and last name)" startsWith: String, contributors: [String!], bylines: [String!], cuisines: [String!], celebrations: [String!], mealTypes: [String!]): [Recipe!]!
 }
 
 """
@@ -417,7 +417,7 @@ type RecipeMealTypeFilter {
   """
   returns all recipes
   """
-  recipes(limit: Int!, offset: Int, sortBy: recipeSortFields, sortDirection: recipeSortDirections, techniques: [String!], utensilsAppliances: [String!], contributors: [String!], bylines: [String!], diets: [String!], cuisines: [String!], celebrations: [String!]): [Recipe!]!
+  recipes(limit: Int!, offset: Int, sortBy: recipeSortFields, sortDirection: recipeSortDirections, techniques: [String!], utensilsAppliances: [String!], "Filter results by name beginning with phrase (searches first and last name)" startsWith: String, contributors: [String!], bylines: [String!], diets: [String!], cuisines: [String!], celebrations: [String!]): [Recipe!]!
 }
 
 type RecipeReference {
@@ -428,19 +428,19 @@ type RecipeReference {
 }
 
 type SavedCollection {
-  contentType: ContentTypes!
-
-  pk: Int!
+  collectionType: CollectionTypes!
 
   softDeleted: Boolean!
 
-  owner: Int!
+  contentType: ContentTypes!
 
   title: String!
 
-  collectionType: CollectionTypes!
-
   collectionId: String!
+
+  owner: Int!
+
+  pk: Int!
 
   lastModified: ZonedDateTime!
 
@@ -559,23 +559,23 @@ enum SortableDates {
 }
 
 type SponsorData {
-  sponsorLink: String!
-
   highContrastSponsorLogoHeight: Int
-
-  highContrastSponsorLogo: String
-
-  sponsorLogoWidth: Int
 
   sponsorLogo: String!
 
   sponsorshipType: String!
 
-  sponsorName: String!
+  highContrastSponsorLogo: String
 
   sponsorLogoHeight: Int
 
   highContrastSponsorLogoWidth: Int
+
+  sponsorLogoWidth: Int
+
+  sponsorLink: String!
+
+  sponsorName: String!
 }
 
 type StatBucket {
@@ -585,15 +585,15 @@ type StatBucket {
 }
 
 type StatsSection {
-  bylines: KeywordStats
+  suitableForDietIds: KeywordStats
 
   mealTypeIds: KeywordStats
 
   cuisineIds: KeywordStats
 
-  contributors: KeywordStats
+  bylines: KeywordStats
 
-  suitableForDietIds: KeywordStats
+  contributors: KeywordStats
 }
 
 type SubCollection {
@@ -601,7 +601,7 @@ type SubCollection {
 }
 
 type SubCollectionData {
-  id: uuid
+  darkPalette: Palette
 
   body: String
 
@@ -613,7 +613,7 @@ type SubCollectionData {
 
   byline: String
 
-  darkPalette: Palette
+  id: uuid
 
   """
   The recipes that make up this collection
@@ -696,7 +696,7 @@ type byline {
   """
   returns all recipes
   """
-  recipes(limit: Int!, offset: Int, sortBy: recipeSortFields, sortDirection: recipeSortDirections, techniques: [String!], utensilsAppliances: [String!], contributors: [String!], bylines: [String!], diets: [String!], cuisines: [String!], celebrations: [String!], mealTypes: [String!]): [Recipe!]!
+  recipes(limit: Int!, offset: Int, sortBy: recipeSortFields, sortDirection: recipeSortDirections, techniques: [String!], utensilsAppliances: [String!], "Filter results by name beginning with phrase (searches first and last name)" startsWith: String, contributors: [String!], bylines: [String!], diets: [String!], cuisines: [String!], celebrations: [String!], mealTypes: [String!]): [Recipe!]!
 }
 
 union contributor = ChefBio|byline
