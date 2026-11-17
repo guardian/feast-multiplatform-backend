@@ -91,7 +91,7 @@ test("facia search omits unspecified filters", async () => {
 
 test("facia chef search returns chef and byline results", async () => {
   const chefs = [
-    { __typename: "ChefBio", webTitle: "Jane Chef", bylineImageUrl: null, contributorId: "chef-1" },
+    { __typename: "ChefBio", webTitle: "Jane Chef", bylineImageUrl: null, contributorId: "chef-1", bio: null },
     { __typename: "byline", webTitle: "The Kitchen" },
   ];
   await withResponse({ data: { chefs } }, async (api, requests) => {
